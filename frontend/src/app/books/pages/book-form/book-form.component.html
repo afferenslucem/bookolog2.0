@@ -1,7 +1,40 @@
-
-    <form [formGroup]="form">
+<form-layout [formGroup]="form">
+    <form-row>
         <tui-input formControlName="name">
             Назнание
-            <input tuiTextfield />
+            <input tuiTextfield/>
         </tui-input>
-    </form>
+    </form-row>
+
+    <form-section>
+        <form-header>
+            Авторы
+        </form-header>
+        <authors-input [controlArray]="form.controls.authors"/>
+    </form-section>
+
+    <form-row>
+        <tui-textarea formControlName="description" [expandable]="true">
+            Описание
+        </tui-textarea>
+    </form-row>
+
+    <form-section>
+        <form-header>
+            Теги
+        </form-header>
+        <tags-input [controlArray]="form.controls.tags"/>
+    </form-section>
+
+    <form-row>
+        <tui-input-date formControlName="startDate">
+            Начало чтения
+        </tui-input-date>
+    </form-row>
+
+    <form-row>
+        <tui-input-date formControlName="finishDate" [tuiTextfieldLabelOutside]="true">
+            Окончание чтения
+        </tui-input-date>
+    </form-row>
+</form-layout>

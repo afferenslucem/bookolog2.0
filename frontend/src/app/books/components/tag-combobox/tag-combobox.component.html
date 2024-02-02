@@ -1,0 +1,13 @@
+<tui-combo-box [formControl]="control" [tuiTextfieldLabelOutside]="true">
+    Введите тег
+
+    <input
+            tuiTextfield
+            [formControl]="control"
+            (input)="onSearchChange(extractValueFromEvent($event))"
+    />
+    <tui-data-list-wrapper
+            *tuiDataList
+            [items]="tags$ | async"
+    ></tui-data-list-wrapper>
+</tui-combo-box>
