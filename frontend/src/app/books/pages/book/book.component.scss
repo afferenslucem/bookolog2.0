@@ -1,0 +1,80 @@
+:host {
+  display: block;
+  font: var(--tui-font-text-l);
+}
+
+tui-loader {
+  height: 100%;
+}
+
+.page-content {
+  display: flex;
+  flex-flow: column;
+
+  height: 100%;
+}
+
+.header {
+  padding: 1rem;
+
+  display: grid;
+
+  grid-template-columns: auto 3rem;
+  grid-template-rows: auto auto;
+
+  align-items: center;
+
+  border-bottom: 1px solid var(--border-color);
+
+  .name {
+    grid-column: 1;
+    grid-row: 1;
+
+    font: var(--tui-font-heading-6);
+  }
+
+  .authors {
+    grid-column: 1;
+    grid-row: 2;
+
+    font: var(--tui-font-text-l);
+
+    margin-top: 0.5rem;
+  }
+
+  .edit-button {
+    grid-column: 2;
+
+    grid-row-start: 1;
+    grid-row-end: 2;
+
+    justify-self: flex-end;
+  }
+}
+
+.body {
+  flex: 1 1 auto;
+
+  padding: 1rem;
+}
+
+.actions {
+  padding: 1rem;
+
+  display: flex;
+  flex-flow: column;
+
+  align-items: stretch;
+
+  gap: 0.5rem;
+}
+
+.line {
+  &__header {
+    font-weight: 600;
+  }
+
+  & + & {
+    margin-top: 0.5rem;
+  }
+}

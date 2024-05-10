@@ -1,0 +1,63 @@
+<tui-loader [showLoader]="id() != null && !book()" [overlay]="true" size="l">
+    <form-layout [formGroup]="form">
+        <form-row>
+            <tui-input formControlName="name">
+                Название
+                <input tuiTextfield/>
+            </tui-input>
+        </form-row>
+
+        <form-section>
+            <form-header>
+                Авторы
+            </form-header>
+
+            <authors-input [controlArray]="form.controls.authors"/>
+        </form-section>
+
+        <form-row>
+            <tui-textarea formControlName="note" [expandable]="true">
+                Заметка
+            </tui-textarea>
+        </form-row>
+
+        <form-row>
+            <genre-input [control]="form.controls.genre"></genre-input>
+        </form-row>
+
+        <form-section>
+            <form-header>
+                Теги
+            </form-header>
+            <tags-input [controlArray]="form.controls.tags"/>
+        </form-section>
+
+        <form-row>
+            <type-select [control]="form.controls.type"></type-select>
+        </form-row>
+
+        <form-row>
+            <status-select [control]="form.controls.status"></status-select>
+        </form-row>
+
+        @if (statusValue === BookStatus.IN_PROGRESS || statusValue === BookStatus.DONE) {
+            <form-row>
+                <tui-input-date formControlName="startDate">
+                    Начало чтения
+                </tui-input-date>
+            </form-row>
+        }
+
+        @if (statusValue === BookStatus.DONE) {
+            <form-row>
+                <tui-input-date formControlName="finishDate" [tuiTextfieldLabelOutside]="true">
+                    Окончание чтения
+                </tui-input-date>
+            </form-row>
+        }
+
+        <button type="submit" tuiButton size="m" (click)="save()" [disabled]="form.invalid">
+            Сохранить
+        </button>
+    </form-layout>
+</tui-loader>

@@ -1,0 +1,12 @@
+:host {
+  display: flex;
+  align-items: center;
+
+  gap: 0.5rem;
+
+  padding: 0.25rem;
+
+  border-bottom: 1px solid var(--border-color);
+
+  font: var(--tui-font-heading-6);
+}

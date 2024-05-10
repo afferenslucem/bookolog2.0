@@ -1,0 +1,30 @@
+@bookolog_HostAddress = http://localhost:5185
+
+POST {{bookolog_HostAddress}}/Auth/SignIn
+Content-Type: application/json
+
+{
+  "Login": "hrodvitnir",
+  "password": "qwerty"
+}
+
+###
+
+POST {{bookolog_HostAddress}}/Auth/Register
+Content-Type: application/json
+
+{
+  "Login": "hrodvitnir",
+  "email": "asd@sd.ru",
+  "password": "qwerty"
+}
+
+###
+
+GET {{bookolog_HostAddress}}/Auth/IsLoginExists/hrodvitnir
+Accept: text/plain
+
+###
+
+GET {{bookolog_HostAddress}}/Auth/IsEmailExists/asd@sd.ru
+Accept: text/plain

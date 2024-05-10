@@ -1,0 +1,4 @@
+@bookolog_HostAddress = http://localhost:5185
+
+GET {{bookolog_HostAddress}}/user/12
+Accept: application/json

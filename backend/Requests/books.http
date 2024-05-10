@@ -1,0 +1,105 @@
+@bookolog_HostAddress = http://localhost:5185
+
+POST {{bookolog_HostAddress}}/book/
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "Лягушка, слон и брокколи",
+  "authors": [
+    "Алексей Марков"
+  ],
+  "tags": [
+    "Саморазвитие",
+    "Лайфхаки"
+  ],
+  "status": 1,
+  "description": "",
+  "genre": "Научпоп",
+  "type": 0,
+  "startDate": "2024-03-11T19:00:00.000Z"
+}
+
+###
+
+POST {{bookolog_HostAddress}}/book/
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "Ведьмино кольцо",
+  "authors": [
+    "Александр Руж"
+  ],
+  "tags": [
+    "суперспособности",
+    "мистика",
+    "ретро"
+  ],
+  "genre": "Детектив",
+  "type": 1,
+  "status": 3,
+  "series": "Вадим Арсеньев",
+  "SeriesNumber": 3,
+  "StartDate": "2024-03-01",
+  "FinishDate": "2024-04-01"
+}
+
+###
+
+PUT {{bookolog_HostAddress}}/book/2
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "Последнее желание",
+  "authors": [
+    "Анджей Сапкофски"
+  ],
+  "tags": [
+    "магия",
+    "средневекосье",
+    "приключения"
+  ],
+  "genre": "фентези",
+  "series": "Ведьмак",
+  "SeriesNumber": 1,
+  "StartDate": "2024-03-01",
+  "FinishDate": "2024-04-01"
+}
+
+###
+
+GET {{bookolog_HostAddress}}/book/2
+Accept: application/json
+
+###
+
+DELETE {{bookolog_HostAddress}}/book/3
+Accept: application/json
+
+###
+
+GET {{bookolog_HostAddress}}/book?year=2024
+Accept: application/json
+
+###
+
+GET {{bookolog_HostAddress}}/book?author=Александр%20Руж
+Accept: application/json
+
+###
+
+GET {{bookolog_HostAddress}}/book/search
+Accept: application/json
+Content-Type: application/json
+
+{
+  "pattern": "По",
+  "tag": "ретро"
+}
+
+###
+
+GET {{bookolog_HostAddress}}/book?tag=магия
+Accept: application/json

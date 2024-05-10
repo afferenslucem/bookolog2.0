@@ -1,0 +1,17 @@
+:host {
+  display: block;
+
+  height: 100vh;
+}
+
+router-outlet {
+  display: none;
+}
+
+.page-content {
+  height: calc(100vh - 53px);
+
+  &--full-height {
+    height: 100vh;
+  }
+}

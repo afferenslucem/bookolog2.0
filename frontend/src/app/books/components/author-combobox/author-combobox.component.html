@@ -1,0 +1,23 @@
+<tui-input
+        class="b-form"
+        [formControl]="control"
+        [tuiTextfieldLabelOutside]="true"
+        [tuiTextfieldCleaner]="true"
+>
+    Введите автора
+    <input
+            tuiTextfield
+    />
+
+    @if (authors().length) {
+        <tui-data-list *tuiDataList>
+            <button
+                    *ngFor="let author of authors() | tuiFilterByInput"
+                    tuiOption
+                    [value]="author"
+            >
+                {{ author }}
+            </button>
+        </tui-data-list>
+    }
+</tui-input>

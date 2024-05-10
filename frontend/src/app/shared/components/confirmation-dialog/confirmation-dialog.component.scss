@@ -1,0 +1,18 @@
+.title {
+  font: var(--tui-font-heading-5);
+}
+
+.content {
+  margin-top: 1.5rem;
+}
+
+.bottom {
+  margin-top: 2rem;
+
+  display: flex;
+  justify-content: flex-end;
+
+  & > * + * {
+    margin-left: 0.5rem;
+  }
+}

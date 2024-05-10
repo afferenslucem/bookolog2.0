@@ -1,0 +1,9 @@
+:host {
+  display: block;
+
+  height: 100%;
+
+  & > * + * {
+    border-top: 1px solid var(--border-color);
+  }
+}

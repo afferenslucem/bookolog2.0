@@ -1,0 +1,13 @@
+<button tuiIconButton [icon]="tuiIconMenuLarge" size="m" appearance="flat" (click)="open = true">
+</button>
+<div class="title-placeholder">
+    {{ title().name }}
+</div>
+
+<ng-template
+    let-observable
+    [tuiSheetDialogOptions]="options"
+    [(tuiSheetDialog)]="open"
+>
+    <app-sidebar (routeChanges)="observable.complete()"></app-sidebar>
+</ng-template>

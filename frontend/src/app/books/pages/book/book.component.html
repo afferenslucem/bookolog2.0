@@ -1,0 +1,84 @@
+<tui-loader *tuiLet="book() as book" [showLoader]="!book" [overlay]="true" size="l">
+    @if (book) {
+        <div class="page-content">
+            <div class="header">
+                <div class="name">
+                    {{ book.name }}
+                </div>
+
+                @if (book.authors.length) {
+                    <div class="authors">
+                        {{ book.authors | join }}
+                    </div>
+                }
+
+                <div class="edit-button">
+                    <button [routerLink]="['..', 'edit', book.id]" tuiIconButton [icon]="editIcon" appearance="flat" size="s"></button>
+                </div>
+            </div>
+
+            <div class="body">
+                <div class="line">
+                    <div class="line__header">
+                        Статус
+                    </div>
+
+                    {{ book.status | bookStatusStringify }}
+
+                </div>
+
+                <div class="line">
+                    <div class="line__header">
+                        Тип
+                    </div>
+
+                    {{ book.type | bookTypeStringify }}
+                </div>
+
+                @if (book.series) {
+                    <div class="line">
+                        <div class="line__header">
+                            Серия
+                        </div>
+
+                        {{ book.series }} @if (book.seriesNumber) { №{{book.seriesNumber}} }
+                    </div>
+                }
+
+                @if (book.note) {
+                    <div class="line">
+                        <div class="line__header">
+                            Заметка
+                        </div>
+
+                        {{ book.note }}
+                    </div>
+                }
+
+                @if (book.startDate) {
+                    <div class="line">
+                        <div class="line__header">
+                            Начало чтения
+                        </div>
+
+                        {{ book.startDate | bookDateFormat }}
+                    </div>
+                }
+
+                @if (book.finishDate) {
+                    <div class="line">
+                        <div class="line__header">
+                            Окончание чтения
+                        </div>
+
+                        {{ book.finishDate | bookDateFormat }}
+                    </div>
+                }
+            </div>
+
+            <div class="actions">
+                <button tuiButton appearance="accent" (click)="delete()">Удалить</button>
+            </div>
+        </div>
+    }
+</tui-loader>

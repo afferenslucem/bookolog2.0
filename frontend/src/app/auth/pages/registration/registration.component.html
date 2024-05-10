@@ -1,0 +1,69 @@
+<form-layout>
+    <h1>
+        Регистрация
+    </h1>
+
+    <form [formGroup]="registrationForm">
+        <form-row data-testid="login-row">
+            <tui-input
+                    formControlName="login"
+                    tuiTextfieldSize="m"
+                    [tuiTextfieldCleaner]="true"
+            >
+                Введите логин
+                <input
+                        tuiTextfield
+                />
+            </tui-input>
+
+            <tui-error formControlName="login" [error]="[] | tuiFieldError | async"></tui-error>
+        </form-row>
+
+        <form-row>
+            <tui-input
+                    formControlName="email"
+                    tuiTextfieldSize="m"
+                    [tuiTextfieldCleaner]="true"
+            >
+                Введите email
+                <input
+                        tuiTextfield
+                />
+            </tui-input>
+            <tui-error formControlName="email" [error]="[] | tuiFieldError | async"></tui-error>
+        </form-row>
+
+        <form-row>
+            <tui-input-password
+                    formControlName="password"
+                    tuiTextfieldSize="m"
+                    [tuiTextfieldCleaner]="true"
+            >
+                Введите пароль
+                <input
+                        tuiTextfield
+                />
+            </tui-input-password>
+            <tui-error formControlName="password" [error]="[] | tuiFieldError | async"></tui-error>
+        </form-row>
+
+        <form-row>
+            <tui-input-password
+                    formControlName="passwordConfirmation"
+                    tuiTextfieldSize="m"
+                    [tuiTextfieldCleaner]="true"
+            >
+                Повторите пароль
+                <input
+                        tuiTextfield
+                />
+            </tui-input-password>
+
+            <tui-error formControlName="passwordConfirmation" [error]="[] | tuiFieldError | async"></tui-error>
+        </form-row>
+    </form>
+
+    <button type="submit" tuiButton size="m" (click)="register()" [disabled]="registrationForm.invalid">
+        Зарегистрироваться
+    </button>
+</form-layout>

@@ -1,0 +1,18 @@
+<tui-select [formControl]="control" [valueContent]="value">
+    Статус чтения
+    <input tuiTextfield />
+
+    <tui-data-list *tuiDataList>
+        @for (status of statuses; track status) {
+            <button
+                    tuiOption
+                    [value]="status"
+            >
+                {{ status | bookStatusStringify }}
+            </button>
+        }
+    </tui-data-list>
+</tui-select>
+<ng-template #value let-value>
+    {{ value | bookStatusStringify }}
+</ng-template>

@@ -1,0 +1,24 @@
+@bookolog_HostAddress = http://localhost:5185
+
+GET {{bookolog_HostAddress}}/statistic/GetAuthorsStatistic
+Accept: application/json
+
+###
+
+GET {{bookolog_HostAddress}}/statistic/GetGenresStatistic
+Accept: application/json
+
+###
+
+GET {{bookolog_HostAddress}}/statistic/GetTagsStatistic
+Accept: application/json
+
+###
+
+GET {{bookolog_HostAddress}}/statistic/GetTypeStatistic
+Accept: application/json
+
+###
+
+GET {{bookolog_HostAddress}}/statistic/GetYearStatistic
+Accept: application/json

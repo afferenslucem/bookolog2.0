@@ -1,0 +1,14 @@
+<div>
+    @for (group of groupedLinks; track $index) {
+        <div class="group">
+            @for (item of group; track item.url) {
+                <a tuiButton size="m" appearance="flat" [routerLink]="item.url"
+                   (click)="routeChanges.emit()"> {{ item.title }} </a>
+            }
+        </div>
+    }
+    <div class="group">
+        <a tuiButton size="m" appearance="accent" [routerLink]="'/logout'"
+           (click)="routeChanges.emit()"> Выход </a>
+    </div>
+</div>

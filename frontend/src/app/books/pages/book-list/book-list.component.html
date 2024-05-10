@@ -1,0 +1,5 @@
+@for (book of books(); track book.id) {
+    <app-book-list-item [book]="book" [routerLink]="['/', 'books', book.id]" />
+} @empty {
+    Oops
+}

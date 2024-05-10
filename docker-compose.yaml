@@ -1,0 +1,30 @@
+version: "3.9"
+services:
+  postgres:
+    image: postgres:16.2-bullseye
+    environment:
+      POSTGRES_PASSWORD: masterkey
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    ports:
+      - "127.0.0.1:45432:5432"
+    volumes:
+      - "./database/init-db/:/docker-entrypoint-initdb.d/"
+      - "db-data:/var/lib/postgresql/data"
+
+  backend:     
+    build: backend/
+    ports:
+      - "45080:80"
+      - "45081:81"
+    depends_on: 
+      - postgres
+
+  client:
+    build: frontend/
+    ports:
+      - "40080:80"    
+    depends_on: 
+      - backend 
+
+volumes:
+  db-data:

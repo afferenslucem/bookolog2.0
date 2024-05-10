@@ -1,0 +1,21 @@
+<tui-input
+        class="b-form"
+        [formControl]="control"
+>
+    Жанр
+    <input
+            tuiTextfield
+    />
+
+    @if (genres().length) {
+        <tui-data-list *tuiDataList>
+            <button
+                    *ngFor="let genre of genres() | tuiFilterByInput"
+                    tuiOption
+                    [value]="genre"
+            >
+                {{ genre }}
+            </button>
+        </tui-data-list>
+    }
+</tui-input>

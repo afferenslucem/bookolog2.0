@@ -1,0 +1,39 @@
+<form-layout>
+    <h1>
+        Вход
+    </h1>
+
+    <form [formGroup]="form">
+        <form-row>
+            <tui-input
+                    icon="tuiIconSearchLarge"
+                    iconAlign="left"
+                    formControlName="login"
+                    tuiTextfieldSize="m"
+                    [tuiTextfieldCleaner]="true"
+            >
+                Введите логин
+                <input
+                        tuiTextfield
+                />
+            </tui-input>
+
+            <tui-error formControlName="login" [error]="[] | tuiFieldError | async"></tui-error>
+        </form-row>
+
+        <form-row>
+            <tui-input-password
+                    formControlName="password"
+                    tuiTextfieldSize="m"
+                    [tuiTextfieldLabelOutside]="true"
+            >
+                Введите пароль
+                <input tuiTextfield />
+            </tui-input-password>
+
+            <tui-error formControlName="password" [error]="[] | tuiFieldError | async"></tui-error>
+        </form-row>
+
+        <button tuiButton size="m" data-testid="login-button" [disabled]="form.invalid" (click)="submit()"> Войти </button>
+    </form>
+</form-layout>

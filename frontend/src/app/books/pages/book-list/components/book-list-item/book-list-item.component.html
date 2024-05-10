@@ -1,0 +1,15 @@
+<div class="name">
+    {{ book.name }}
+</div>
+<div>
+    @if (book.authors.length) {
+        {{ book.authors | join }}
+    } @else {
+        Нет авторов
+    }
+</div>
+@if (book.startDate || book.finishDate) {
+    <div>
+        {{ book.startDate | bookDateFormat }} - {{ book.finishDate | bookDateFormat }}
+    </div>
+}

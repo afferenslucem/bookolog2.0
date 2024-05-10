@@ -1,0 +1,18 @@
+<tui-select [formControl]="control" [valueContent]="value">
+    Тип книги
+    <input tuiTextfield />
+
+    <tui-data-list *tuiDataList>
+        @for (type of types; track type) {
+            <button
+                    tuiOption
+                    [value]="type"
+            >
+                {{ type | bookTypeStringify }}
+            </button>
+        }
+    </tui-data-list>
+</tui-select>
+<ng-template #value let-value>
+    {{ value | bookTypeStringify }}
+</ng-template>

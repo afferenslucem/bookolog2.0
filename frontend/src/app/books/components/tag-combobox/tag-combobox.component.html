@@ -1,0 +1,22 @@
+<tui-input
+        [formControl]="control"
+        [tuiTextfieldLabelOutside]="true"
+        [tuiTextfieldCleaner]="true"
+>
+    Введите тэг
+    <input
+            tuiTextfield
+    />
+
+    @if (tags().length) {
+        <tui-data-list *tuiDataList>
+            <button
+                    *ngFor="let tags of tags() | tuiFilterByInput"
+                    tuiOption
+                    [value]="tags"
+            >
+                {{ tags }}
+            </button>
+        </tui-data-list>
+    }
+</tui-input>
