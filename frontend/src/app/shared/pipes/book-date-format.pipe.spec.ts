@@ -11,7 +11,7 @@ describe('BookDateFormatPipe', () => {
 
         const result = pipe.transform({ year: 2024, month: 4, day: 12 })
 
-        expect(result).toBe('2024.04.12');
+        expect(result).toBe('2024.05.12');
     });
 
     it('formats date without day', () => {
@@ -19,7 +19,7 @@ describe('BookDateFormatPipe', () => {
 
         const result = pipe.transform({ year: 2024, month: 4 })
 
-        expect(result).toBe('2024.04.01');
+        expect(result).toBe('2024.05.01');
     });
 
     it('formats date without month', () => {

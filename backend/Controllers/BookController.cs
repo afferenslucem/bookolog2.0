@@ -59,7 +59,7 @@ public class BookController : Controller
     [HttpPost("search")]
     public async Task<IActionResult> SearchBooks([FromBody] SearchBookOptions? options)
     {
-        var books = await _bookService.Search(options);
+        var books = await _bookService.Search(UserId, options);
 
         return Ok(books);
     }

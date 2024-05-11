@@ -7,10 +7,11 @@ import { ReadDate } from '../../domain/book';
 })
 export class BookDateFormatPipe implements PipeTransform {
     public transform(value: ReadDate | nil, ...args: unknown[]): string {
-        const year = value?.year.toString();
-        const month = value?.month?.toString().padStart(2, '0') ?? '01';
-        const day = value?.day?.toString().padStart(2, '0') ?? '01';
+        const rdMonth = (value?.month ?? 0) + 1;
 
+        const year = value?.year.toString();
+        const month = rdMonth.toString().padStart(2, '0') ?? '01';
+        const day = value?.day?.toString().padStart(2, '0') ?? '01';
 
         return value ? `${year}.${month}.${day}` : '...';
     }

@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using bookolog.Models;
 using bookolog.Storages;
 using bookolog.Utils;
@@ -10,7 +11,7 @@ public interface IBookService
     public Task<Book> Create(Book entity);
     public Task<Book> Update(Book entity);
     public Task<Book?> GetById(long id);
-    public Task<Book[]> Search(SearchBookOptions? options);
+    public Task<Book[]> Search(int userId, SearchBookOptions? options);
     public Task Delete(Book entity);
 }
 
@@ -49,9 +50,11 @@ public class BookService : IBookService
         return book;
     }
 
-    public async Task<Book[]> Search(SearchBookOptions? options)
+    public async Task<Book[]> Search(int userId, SearchBookOptions? options)
     {
         IQueryable<Book> books = dbContext.Books;
+
+        books = books.Where(book => book.UserId == userId);
 
         if (!string.IsNullOrEmpty(options?.Author))
         {
@@ -85,14 +88,18 @@ public class BookService : IBookService
 
         if (options?.Series != null)
         {
-            books = books.Where(book => book.Series == options.Series)
-                .OrderBy(book => book.SeriesNumber);
+            books = books.Where(book => book.Series == options.Series);
+        }
+
+        if (options?.Order?.Direction.ToLower() == "asc")
+        {
+            books = books.OrderBy(GetNullOrder(options)).ThenBy(GetOrderProperty(options));
         }
         else
         {
-            books = books.OrderByDescending(book => book.ModifyDate);
+            books = books.OrderBy(GetNullOrder(options)).ThenByDescending(GetOrderProperty(options));
         }
-
+        
         return await books.ToArrayAsync();
     }
 
@@ -101,5 +108,31 @@ public class BookService : IBookService
         dbContext.Books.Remove(book);
 
         await dbContext.SaveChangesAsync();
+    }
+
+    private static Expression<Func<Book, object?>> GetOrderProperty(SearchBookOptions? options)
+    {
+        Expression<Func<Book, object?>> keySelector = options?.Order?.FieldName.ToLower() switch
+        {
+            "seriesnumber" => book => book.SeriesNumber,
+            "startdate" => book => book.StartDate,
+            "finishdate" => book => book.FinishDate,
+            _ => book => book.ModifyDate,
+        };
+
+        return keySelector;
+    }
+
+    private static Expression<Func<Book, Boolean>> GetNullOrder(SearchBookOptions? options)
+    {
+        Expression<Func<Book, Boolean>> keySelector = options?.Order?.FieldName.ToLower() switch
+        {
+            "seriesnumber" => book => book.SeriesNumber == null,
+            "startdate" => book => book.StartDate == null,
+            "finishdate" => book => book.FinishDate == null,
+            _ => book => book.ModifyDate == null,
+        };
+
+        return keySelector;
     }
 }

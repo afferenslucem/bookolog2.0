@@ -14,6 +14,6 @@ export class DoneBooksListProvider extends BookListProvider {
   }
 
   public override getBooks(): Observable<Book[]> {
-    return this.bookService.searchBooks({ status: BookStatus.DONE });
+    return this.bookService.searchBooks({ status: BookStatus.DONE, order: { fieldName: 'finishDate', direction: 'desc' } });
   }
 }

@@ -13,9 +13,6 @@ services:
 
   backend:     
     build: backend/
-    ports:
-      - "45080:80"
-      - "45081:81"
     depends_on: 
       - postgres
 

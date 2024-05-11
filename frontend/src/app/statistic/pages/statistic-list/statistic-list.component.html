@@ -3,7 +3,7 @@
         <a tuiButton appearance="flat" [routerLink]="[item.name]">
             <div class="content">
                 <span>
-                    {{ item.name }}
+                    {{ item.name ?? 'Не указано' }}
                 </span>
                 <span>
                 {{ item.count }}

@@ -54,6 +54,8 @@ public class StatisticController: Controller
     public async Task<IActionResult> GetYearStatistic()
     {
         var statistic = await _statisticService.GetYearStatistic(UserId);
+
+        statistic = statistic.OrderByDescending(item => item.Name).ToArray();
         
         return Ok(statistic);
     }

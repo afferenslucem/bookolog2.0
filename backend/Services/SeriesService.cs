@@ -24,18 +24,23 @@ public class SeriesService : ISeriesService
         var userBooks = dbContext.Books
             .Where(book => book.UserId == userId);
 
-        var bookSeries = userBooks.Where(book => book.Series != null)
-            .Select(book => book.Series);
+        var bookWithSeries = userBooks.Where(book => book.Series != null);
 
         if (pattern != null)
         {
-            bookSeries = bookSeries.Where(series => series.Contains(pattern));
+            bookWithSeries = bookWithSeries.Where(book => book.Series!.Contains(pattern));
         }
 
-        var statistic = await bookSeries
-            .GroupBy(series => series, (series, books) => new StatisticItem(series, books.Count()))
+        var statistic = await bookWithSeries
+            .GroupBy(book => book.Series, (series, books) => new
+            {
+                Name = series, 
+                Count = books.Count(), 
+                ModifyDate = books.Select(book => book.ModifyDate).Max()
+            })
+            .OrderByDescending(item => item.ModifyDate)
             .ToArrayAsync();
 
-        return statistic;
+        return statistic.Select(item => new StatisticItem(item.Name, item.Count)).ToArray();
     }
 }

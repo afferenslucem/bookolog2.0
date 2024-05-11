@@ -17,9 +17,15 @@ builder.Services.AddScoped<IStatisticService, StatisticService>();
 builder.Services.AddScoped<ISeriesService, SeriesService>();
 
 builder.Services.AddDbContext<BookologContext>(options =>
-    options.UseNpgsql(configuration.GetConnectionString("BookologDatabase")));
+    {
+        options
+            .UseNpgsql(configuration.GetConnectionString("BookologDatabase"));
+    }
+);
 
-builder.Services.AddHttpLogging(options => options.LoggingFields = HttpLoggingFields.RequestMethod | HttpLoggingFields.RequestPath | HttpLoggingFields.Duration);
+builder.Services.AddHttpLogging(options =>
+    options.LoggingFields =
+        HttpLoggingFields.RequestMethod | HttpLoggingFields.RequestPath | HttpLoggingFields.Duration);
 
 builder.Services.AddCors();
 // Add services to the container.
@@ -29,7 +35,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
-    { options.ExpireTimeSpan = TimeSpan.FromDays(365);
+    {
+        options.ExpireTimeSpan = TimeSpan.FromDays(365);
         options.SlidingExpiration = true;
         options.AccessDeniedPath = "/Forbidden/";
     });

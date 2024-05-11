@@ -1,4 +1,5 @@
-import { BookStatus } from './book';
+import { Book, BookStatus } from './book';
+import { Order } from './order';
 
 export class BookSearchOptions {
     public pattern?: string;
@@ -8,4 +9,6 @@ export class BookSearchOptions {
     public genre?: string;
     public status?: BookStatus;
     public year?: number;
+
+    public order?: Order<Book>
 }
