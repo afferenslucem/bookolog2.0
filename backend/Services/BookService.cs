@@ -58,17 +58,17 @@ public class BookService : IBookService
 
         if (!string.IsNullOrEmpty(options?.Author))
         {
-            books = books.Where(book => book.Authors.Contains(options!.Author));
+            books = books.Where(book => book.Authors.Any(author => author.ToLower() == options.Author.ToLower()));
         }
 
         if (!string.IsNullOrEmpty(options?.Tag))
         {
-            books = books.Where(book => book.Tags.Contains(options!.Tag));
+            books = books.Where(book => book.Tags.Any(tag => tag.ToLower() == options.Tag.ToLower()));
         }
 
         if (!string.IsNullOrEmpty(options?.Pattern))
         {
-            books = books.Where(book => book.Name.Contains(options!.Pattern));
+            books = books.Where(book => book.Name.ToLower().Contains(options!.Pattern.ToLower()));
         }
 
         if (options?.Year != null)
@@ -78,7 +78,7 @@ public class BookService : IBookService
 
         if (options?.Genre != null)
         {
-            books = books.Where(book => book.Genre == options.Genre);
+            books = books.Where(book => book.Genre.ToLower() == options.Genre.ToLower());
         }
 
         if (options?.Status != null)
@@ -88,7 +88,7 @@ public class BookService : IBookService
 
         if (options?.Series != null)
         {
-            books = books.Where(book => book.Series == options.Series);
+            books = books.Where(book => book.Series.ToLower() == options.Series.ToLower());
         }
 
         if (options?.Order?.Direction.ToLower() == "asc")

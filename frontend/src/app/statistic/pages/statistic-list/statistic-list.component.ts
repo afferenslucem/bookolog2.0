@@ -6,7 +6,7 @@ import { StatisticItem } from '../../domain/statistic-item';
 import { StatisticProvider } from '../../services/providers/statistic-providers/statistic-provider.service';
 
 @Component({
-    selector: 'app-statistik-list',
+    selector: 'app-statistic-list',
     standalone: true,
     imports: [
         TuiButtonModule,
