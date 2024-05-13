@@ -1,6 +1,7 @@
 using bookolog.Services;
 using bookolog.Storages;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.CookiePolicy;
 using Microsoft.AspNetCore.HttpLogging;
 using Microsoft.EntityFrameworkCore;
 
@@ -32,13 +33,14 @@ builder.Services.AddCors();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+
 builder.Services.AddSwaggerGen();
+
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
         options.ExpireTimeSpan = TimeSpan.FromDays(365);
         options.SlidingExpiration = true;
-        options.AccessDeniedPath = "/Forbidden/";
     });
 
 var app = builder.Build();
@@ -56,6 +58,13 @@ app.UseCors(options =>
         "https://185.204.0.105.ru",
         "http://localhost:59021"
     ]).AllowCredentials().AllowAnyMethod().AllowAnyHeader();
+});
+
+app.UseCookiePolicy(new CookiePolicyOptions()
+{
+    CheckConsentNeeded = context => true,
+    MinimumSameSitePolicy = SameSiteMode.Strict,
+    HttpOnly = HttpOnlyPolicy.Always,
 });
 
 if (app.Environment.IsDevelopment())

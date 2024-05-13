@@ -35,8 +35,18 @@ public class AuthController : Controller
 
         var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
+        var authProperties = new AuthenticationProperties
+        {
+            AllowRefresh = true,
+            //ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(10),
+            IsPersistent = true,
+            //IssuedUtc = <DateTimeOffset>,
+            //RedirectUri = <string>
+        };
+
+        
         await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
-            new ClaimsPrincipal(claimsIdentity));
+            new ClaimsPrincipal(claimsIdentity), authProperties);
 
         return Ok(user.WithoutPrivate());
     }
