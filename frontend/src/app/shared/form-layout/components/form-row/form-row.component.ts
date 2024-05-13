@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostBinding, Input } from '@angular/core';
 
 @Component({
   selector: 'form-row',
@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrl: './form-row.component.scss'
 })
 export class FormRowComponent {
-
+  @HostBinding('class.flex')
+  @Input('flex')
+  public flex: string | boolean | nil = null!;
 }

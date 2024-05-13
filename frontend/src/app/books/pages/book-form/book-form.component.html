@@ -32,6 +32,27 @@
             <tags-input [controlArray]="form.controls.tags"/>
         </form-section>
 
+        <form-section class="series-section" [class.series-section--closed]="!seriesEnabledValue">
+            <form-header>
+                <span>
+                    Серия
+                </span>
+
+                <tui-toggle formControlName="seriesEnabled" [showIcons]="true" size="l"></tui-toggle>
+            </form-header>
+
+            @if (seriesEnabledValue) {
+                <form-row flex="true">
+                    <series-input [control]="form.controls.series"></series-input>
+
+                    <tui-input-number formControlName="seriesNumber">
+                        Номер книги
+                        <input tuiTextfield/>
+                    </tui-input-number>
+                </form-row>
+            }
+        </form-section>
+
         <form-row>
             <type-select [control]="form.controls.type"></type-select>
         </form-row>
@@ -50,7 +71,7 @@
 
         @if (statusValue === BookStatus.DONE) {
             <form-row>
-                <tui-input-date formControlName="finishDate" [tuiTextfieldLabelOutside]="true">
+                <tui-input-date formControlName="finishDate">
                     Окончание чтения
                 </tui-input-date>
             </form-row>

@@ -1,0 +1,21 @@
+<tui-input
+        class="b-form"
+        [formControl]="control"
+>
+    Название серии
+    <input
+            tuiTextfield
+    />
+
+    @if (series().length) {
+        <tui-data-list *tuiDataList>
+            <button
+                    *ngFor="let series of series() | tuiFilterByInput"
+                    tuiOption
+                    [value]="series"
+            >
+                {{ series }}
+            </button>
+        </tui-data-list>
+    }
+</tui-input>

@@ -32,7 +32,6 @@ export class Book {
     public name: string = null!;
     public note?: string | null;
 
-    @Transform(titleCase, { toPlainOnly: true })
     public series?: string | null;
     public seriesNumber?: number | null;
 
@@ -56,6 +55,8 @@ export class Book {
     @Transform(toReadDate, { toClassOnly: true })
     @Transform(toNativeDate, { toPlainOnly: true })
     public startDate?: ReadDate | null;
+
+    public modifyDate?: Date | null;
 
     @Transform(toReadDate, { toClassOnly: true })
     @Transform(toNativeDate, { toPlainOnly: true })

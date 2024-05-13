@@ -14,27 +14,15 @@ export abstract class ArrayInputComponent implements OnInit {
     public ngOnInit(): void {
         this.controlArray.valueChanges
             .pipe(takeUntil(this.destroy$))
-            .subscribe(values => this.manageControls());
+            .subscribe(values => this.checkDeleted());
     }
 
-    private manageControls(): void {
-        this.checkLastFilled();
-
-        this.checkDeleted();
-    }
-
-    private checkLastFilled(): void {
-        const values = this.controlArray.value;
-        const last = values[values.length - 1];
-
-        if (!this.isEmpty(last)) {
-            this.controlArray.push(new FormControl('', { nonNullable: true, updateOn: 'blur' }), { emitEvent: false });
-            return;
-        }
+    public addControl(): void {
+        this.controlArray.push(new FormControl('', { nonNullable: true, updateOn: 'blur' }), { emitEvent: false });
     }
 
     private checkDeleted(): void {
-        const values = this.controlArray.value.slice(0, -1);
+        const values = this.controlArray.value;
         const emptyIndex = values.findIndex(item => this.isEmpty(item));
 
         if (emptyIndex === -1) {

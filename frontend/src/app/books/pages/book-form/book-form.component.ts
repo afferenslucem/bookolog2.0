@@ -2,13 +2,20 @@ import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TuiButtonModule, TuiLoaderModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
-import { TuiComboBoxModule, TuiInputDateModule, TuiInputModule, TuiTextareaModule } from '@taiga-ui/kit';
+import {
+    TuiComboBoxModule,
+    TuiInputDateModule,
+    TuiInputModule,
+    TuiInputNumberModule,
+    TuiTextareaModule, TuiToggleModule,
+} from '@taiga-ui/kit';
 import { BehaviorSubject, filter, first, map, tap } from 'rxjs';
 import { Book, BookStatus, BookType, ReadDate } from '../../../domain/book';
 import { PagePadding, ViewContainer } from '../../../shared';
 import { FormLayoutModule } from '../../../shared/form-layout/form-layout.module';
 import { AuthorsInputComponent } from '../../components/authors-input/authors-input.component';
 import { GenreInputComponent } from '../../components/genre-input/genre-input.component';
+import { SeriesInputComponent } from '../../components/series-input/series-input.component';
 import { StatusSelectComponent } from '../../components/status-select/status-select.component';
 import { TagsInputComponent } from '../../components/tags-input/tags-input.component';
 import { TypeSelectComponent } from '../../components/type-select/type-select.component';
@@ -22,6 +29,9 @@ interface BookForm {
     genre: FormControl<string | null>;
     tags: FormArray<FormControl<string>>;
     status: FormControl<BookStatus | null>;
+    series: FormControl<string | null>;
+    seriesNumber: FormControl<number | null>;
+    seriesEnabled: FormControl<boolean>;
     type: FormControl<BookType | null>;
     startDate: FormControl<ReadDate | null>;
     finishDate: FormControl<ReadDate | null>;
@@ -45,6 +55,9 @@ interface BookForm {
         StatusSelectComponent,
         TypeSelectComponent,
         TuiLoaderModule,
+        TuiInputNumberModule,
+        TuiToggleModule,
+        SeriesInputComponent,
     ],
     hostDirectives: [PagePadding, ViewContainer],
     templateUrl: './book-form.component.html',
@@ -60,6 +73,10 @@ export default class BookFormComponent {
 
     public get statusValue(): BookStatus | null {
         return this.form.controls.status.value;
+    }
+
+    public get seriesEnabledValue(): boolean {
+        return this.form.controls.seriesEnabled.value;
     }
 
     public constructor(private activatedRoute: ActivatedRoute, private bookClient: BookService, private router: Router) {
@@ -103,6 +120,9 @@ export default class BookFormComponent {
             tags: new FormArray([new FormControl('', { nonNullable: true })]),
             genre: new FormControl(null, { updateOn: 'blur', validators: Validators.required }),
             status: new FormControl<BookStatus | null>(null, { validators: Validators.required }),
+            series: new FormControl<string | null>(null, { validators: Validators.required }),
+            seriesNumber: new FormControl<number | null>(null, { validators: Validators.required }),
+            seriesEnabled: new FormControl<boolean>(false, { nonNullable: true }),
             type: new FormControl<BookType | null>(null, { validators: Validators.required }),
             startDate: new FormControl<ReadDate | null>(null, { updateOn: 'blur' }),
             finishDate: new FormControl<ReadDate | null>(null, { updateOn: 'blur' }),
@@ -111,10 +131,14 @@ export default class BookFormComponent {
 
     private tryLoadBook(id: number): void {
         this.bookClient.loadBook(id).subscribe(book => {
-            this.resizeArrayFor(this.form.controls.tags, book.tags.length);
-            this.resizeArrayFor(this.form.controls.authors, book.authors.length);
+            this.resizeArrayFor(this.form.controls.tags, book.tags.length - 1);
+            this.resizeArrayFor(this.form.controls.authors, book.authors.length - 1);
 
             this.form.patchValue(book);
+
+            this.form.patchValue({
+                seriesEnabled: !!book.series
+            })
 
             this.book.set(book)
         });

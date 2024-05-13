@@ -1,9 +1,14 @@
 :host {
-  display: block;
+  display: flex;
 
+  align-items: center;
 
   margin-bottom: 0.25rem;
   padding-left: 0.25rem;
 
   font: var(--tui-font-text-l);
+
+  &::ng-deep > * + * {
+    margin-left: 0.75rem;
+  }
 }

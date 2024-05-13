@@ -1,3 +1,7 @@
 <form-row *ngFor="let subcontrol of controlArray.controls">
     <tag-combobox [control]="subcontrol" />
 </form-row>
+
+<button class="add-button" [style.width]="'100%'" tuiButton size="m" (click)="addControl()" appearance="whiteblock-active">
+    Добавить <tui-svg [src]="tuiIconPlusSquareLarge"></tui-svg>
+</button>

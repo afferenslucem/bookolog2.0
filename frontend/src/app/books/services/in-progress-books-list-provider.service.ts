@@ -14,6 +14,6 @@ export class InProgressBooksListProvider extends BookListProvider {
   }
 
   public override getBooks(): Observable<Book[]> {
-    return this.bookService.searchBooks({ status: BookStatus.IN_PROGRESS });
+    return this.bookService.searchBooks({ status: BookStatus.IN_PROGRESS, order: { fieldName: 'modifyDate', direction: 'desc' } });
   }
 }

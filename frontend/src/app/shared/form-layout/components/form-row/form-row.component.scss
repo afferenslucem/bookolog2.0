@@ -4,4 +4,19 @@
   & + & {
     margin-top: 0.75rem;
   }
+
+  &.flex {
+    display: flex;
+
+    align-items: flex-start;
+    justify-content: stretch;
+
+    &::ng-deep > * {
+      flex: 1 1 auto;
+    }
+
+    &::ng-deep > * + * {
+      margin-left: 0.75rem;
+    }
+  }
 }
