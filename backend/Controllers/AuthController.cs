@@ -64,6 +64,14 @@ public class AuthController : Controller
         return Ok(user!.WithoutPrivate());
     }
 
+    [HttpGet("IsLoginExists/{login}")]
+    public async Task<IActionResult> IsLoginExists(string login)
+    {
+        var user = await _userService.IsLoginExits(login);
+
+        return Ok(user);
+    }
+
     [HttpGet("IsEmailExists/{email}")]
     public async Task<IActionResult> IsEmailExists(string email)
     {

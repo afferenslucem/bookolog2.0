@@ -1,8 +1,8 @@
 import { AsyncPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { TuiButtonModule, TuiErrorModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
+import { Router, RouterLink } from '@angular/router';
+import { TuiButtonModule, TuiErrorModule, TuiLinkModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
 import { TuiFieldErrorPipeModule, TuiInputModule, TuiInputPasswordModule } from '@taiga-ui/kit';
 import { AuthService } from '../../../services/auth.service';
 import { PagePadding, ViewContainer } from '../../../shared';
@@ -26,6 +26,8 @@ interface LoginForm {
         TuiInputPasswordModule,
         TuiButtonModule,
         FormLayoutModule,
+        TuiLinkModule,
+        RouterLink,
     ],
     templateUrl: './login-page.component.html',
     styleUrl: './login-page.component.scss',

@@ -28,12 +28,17 @@
                     [tuiTextfieldLabelOutside]="true"
             >
                 Введите пароль
-                <input tuiTextfield />
+                <input tuiTextfield/>
             </tui-input-password>
 
             <tui-error formControlName="password" [error]="[] | tuiFieldError | async"></tui-error>
         </form-row>
 
-        <button tuiButton size="m" data-testid="login-button" [disabled]="form.invalid" (click)="submit()"> Войти </button>
+        <a routerLink="/registration" tuiLink>
+            Зарегистрироваться
+        </a>
+
+        <button tuiButton size="m" data-testid="login-button" [disabled]="form.invalid" (click)="submit()"> Войти
+        </button>
     </form>
 </form-layout>

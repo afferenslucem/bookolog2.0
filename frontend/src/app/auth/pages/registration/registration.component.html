@@ -63,7 +63,9 @@
         </form-row>
     </form>
 
-    <button type="submit" tuiButton size="m" (click)="register()" [disabled]="registrationForm.invalid">
+    {{ registrationForm.status }}
+
+    <button type="submit" tuiButton size="m" (click)="register()" [disabled]="!registrationForm.valid">
         Зарегистрироваться
     </button>
 </form-layout>

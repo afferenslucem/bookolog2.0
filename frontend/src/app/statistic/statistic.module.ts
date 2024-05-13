@@ -23,7 +23,7 @@ import { YearStatisticProvider } from './services/providers/statistic-providers/
                 loadComponent: () => import('./pages/statistic-list/statistic-list.component'),
                 data: {
                     title: {
-                        name: 'Тэги',
+                        name: 'Жанры',
                     } as TitleNode,
                 },
                 providers: [
@@ -45,7 +45,7 @@ import { YearStatisticProvider } from './services/providers/statistic-providers/
                 loadComponent: () => import('./pages/statistic-list/statistic-list.component'),
                 data: {
                     title: {
-                        name: 'Тэги',
+                        name: 'Теги',
                     } as TitleNode,
                 },
                 providers: [

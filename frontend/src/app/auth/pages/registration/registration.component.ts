@@ -9,9 +9,10 @@ import {
     ValidationErrors,
     Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { TuiButtonModule, TuiErrorModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
 import { TuiFieldErrorPipeModule, TuiInputModule, TuiInputPasswordModule } from '@taiga-ui/kit';
-import { map, Observable, tap } from 'rxjs';
+import { first, map, Observable, take, tap } from 'rxjs';
 import { RegistrationData } from '../../../domain/registration-data';
 import { AuthService } from '../../../services/auth.service';
 import { FormHelper, PagePadding, ViewContainer } from '../../../shared';
@@ -59,26 +60,26 @@ export default class RegistrationComponent {
         passwordConfirmation: new FormControl<string>('', { validators: Validators.required, nonNullable: true }),
     }, { validators: this.passwordsShouldMatch });
 
-    public constructor(private authService: AuthService) {
+    public constructor(private authService: AuthService, private router: Router) {
     }
 
     public register(): void {
-        if (!this.registrationForm.invalid) {
-            this.authService.register(this.registrationForm.value as RegistrationData).subscribe()
+        if (this.registrationForm.valid) {
+            this.authService.register(this.registrationForm.value as RegistrationData).subscribe(() => this.router.navigate(['login']));
         }
     }
 
     private isLoginExistsValidator(control: AbstractControl): Observable<ValidationErrors | null> {
         return this.authService.isLoginExists(control.value).pipe(
             map(result => result ? { loginExists: true } : null),
-            tap(checkResult => console.debug('isLoginExistsResult', checkResult)),
+            take(1),
         );
     }
 
     private isEmailExistsValidator(control: AbstractControl): Observable<ValidationErrors | null> {
         return this.authService.isEmailExists(control.value).pipe(
             map(result => result ? { emailExists: true } : null),
-            tap(checkResult => console.debug('isEmailExists', checkResult)),
+            take(1),
         );
     }
 
