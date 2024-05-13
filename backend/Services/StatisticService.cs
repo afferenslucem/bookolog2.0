@@ -36,7 +36,7 @@ public class StatisticService : IStatisticService
         }
 
         var statistic = await authors
-            .GroupBy(author => author, (author, books) => new { Name = author.ToString(), Count = books.Count() })
+            .GroupBy(author => author.ToLower(), (author, books) => new { Name = author.ToString(), Count = books.Count() })
             .OrderByDescending(pair => pair.Count)
             .ToArrayAsync();
 
@@ -49,7 +49,7 @@ public class StatisticService : IStatisticService
         var userBooks = dbContext.Books
             .Where(book => book.UserId == userId && book.Status == BookStatus.Done);
 
-        var genres = userBooks.Select(book => book.Genre);
+        var genres = userBooks.Where(book => book.Genre != null).Select(book => book.Genre);
 
         if (pattern != null)
         {
@@ -57,7 +57,7 @@ public class StatisticService : IStatisticService
         }
 
         var statistic = await genres
-            .GroupBy(genre => genre, (genre, books) => new { Name = genre.ToString(), Count = books.Count() })
+            .GroupBy(genre => genre.ToLower(), (genre, books) => new { Name = genre.ToString(), Count = books.Count() })
             .OrderByDescending(pair => pair.Count)
             .ToArrayAsync();
 
@@ -78,7 +78,7 @@ public class StatisticService : IStatisticService
         }
 
         var statistic = await tags
-            .GroupBy(tag => tag, (tag, books) => new { Name = tag.ToString(), Count = books.Count() })
+            .GroupBy(tag => tag.ToLower(), (tag, books) => new { Name = tag.ToString(), Count = books.Count() })
             .OrderByDescending(pair => pair.Count)
             .ToArrayAsync();
 

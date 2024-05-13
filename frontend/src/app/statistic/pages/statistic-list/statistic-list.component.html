@@ -1,9 +1,9 @@
 <tui-loader [showLoader]="items() == null" [overlay]="true" size="l">
     @for (item of items(); track item.name) {
-        <a tuiButton appearance="flat" [routerLink]="[item.name]">
+        <a tuiButton size="m" appearance="flat" [routerLink]="[item.name]">
             <div class="content">
                 <span>
-                    {{ item.name ?? 'Не указано' }}
+                    {{ (item.name ?? 'Не указано') | titlecase }}
                 </span>
                 <span>
                 {{ item.count }}

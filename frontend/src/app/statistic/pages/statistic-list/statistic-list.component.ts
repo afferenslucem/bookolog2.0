@@ -1,3 +1,4 @@
+import { TitleCasePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TuiButtonModule, TuiLoaderModule } from '@taiga-ui/core';
@@ -11,6 +12,7 @@ import { StatisticProvider } from '../../services/providers/statistic-providers/
         TuiButtonModule,
         RouterLink,
         TuiLoaderModule,
+        TitleCasePipe,
     ],
     templateUrl: './statistic-list.component.html',
     styleUrl: './statistic-list.component.scss',

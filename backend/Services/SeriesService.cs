@@ -32,7 +32,7 @@ public class SeriesService : ISeriesService
         }
 
         var statistic = await bookWithSeries
-            .GroupBy(book => book.Series, (series, books) => new
+            .GroupBy(book => book.Series!.ToLower(), (series, books) => new
             {
                 Name = series, 
                 Count = books.Count(), 
