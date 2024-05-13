@@ -34,6 +34,10 @@
             <tui-error formControlName="password" [error]="[] | tuiFieldError | async"></tui-error>
         </form-row>
 
+        @if (unauthorized()) {
+            <tui-error [error]="'Неверные логин или пароль'"></tui-error>
+        }
+
         <a routerLink="/registration" tuiLink class="registration-link">
             Зарегистрироваться
         </a>

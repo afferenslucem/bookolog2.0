@@ -1,5 +1,6 @@
 import { AsyncPipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { TuiButtonModule, TuiErrorModule, TuiLinkModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
@@ -32,6 +33,7 @@ interface LoginForm {
     templateUrl: './login-page.component.html',
     styleUrl: './login-page.component.scss',
     hostDirectives: [PagePadding, ViewContainer],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class LoginPageComponent {
     public form = new FormGroup<LoginForm>({
@@ -39,12 +41,19 @@ export default class LoginPageComponent {
         password: new FormControl<string>('', { nonNullable: true, validators: Validators.required }),
     });
 
+    public unauthorized = signal(false);
+
     public constructor(private authService: AuthService, private router: Router) {
     }
 
     public submit(): void {
-        this.authService.signIn(this.form.getRawValue()).subscribe(() => {
-            this.router.navigate(['books']);
+        this.unauthorized.set(false);
+
+        this.authService.signIn(this.form.getRawValue()).subscribe({
+            next: () => {
+                this.router.navigate(['books']);
+            },
+            error: (err: HttpErrorResponse) => this.unauthorized.set(err.status === 401)
         });
     }
 }

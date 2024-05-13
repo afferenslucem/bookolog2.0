@@ -27,7 +27,7 @@ public class UserService : IUserService
 
     public async Task<User?> CheckUser(AuthenticationModel model)
     {
-        var user = await dbContext.Users.FirstOrDefaultAsync(user => user.Login == model.Login);
+        var user = await dbContext.Users.FirstOrDefaultAsync(user => user.Login.ToLower() == model.Login.ToLower());
 
         if (user == null)
         {
@@ -58,14 +58,14 @@ public class UserService : IUserService
 
     public async Task<bool> IsEmailExits(string email)
     {
-        var result = await dbContext.Users.FirstOrDefaultAsync(item => item.Email == email);
+        var result = await dbContext.Users.FirstOrDefaultAsync(item => item.Email.ToLower() == email.ToLower());
 
         return result != null;
     }
 
     public async Task<bool> IsLoginExits(string login)
     {
-        var result = await dbContext.Users.FirstOrDefaultAsync(item => item.Login == login);
+        var result = await dbContext.Users.FirstOrDefaultAsync(item => item.Login.ToLower() == login.ToLower());
 
         return result != null;
     }
