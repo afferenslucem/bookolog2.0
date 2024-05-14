@@ -1,5 +1,7 @@
-@for (book of books(); track book.id) {
-    <app-book-list-item [book]="book" [routerLink]="['/', 'books', book.id]" />
-} @empty {
-    Oops
-}
+<tui-loader [showLoader]="books() == null" [overlay]="true">
+    @for (book of books(); track book.id) {
+        <app-book-list-item [book]="book" [routerLink]="['/', 'books', book.id]" />
+    } @empty {
+        <empty-list></empty-list>
+    }
+</tui-loader>

@@ -24,7 +24,7 @@ export class SidebarComponent {
                 url: '/books/to-read',
             },
             {
-                title: 'Прочитал',
+                title: 'Прочитано',
                 url: '/books/done',
             },
         ],

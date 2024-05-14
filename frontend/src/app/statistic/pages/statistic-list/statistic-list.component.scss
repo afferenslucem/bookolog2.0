@@ -2,6 +2,8 @@
   display: flex;
 
   flex-flow: column;
+
+  height: 100%;
 }
 
 a {
@@ -16,4 +18,8 @@ a {
   align-items: center;
 
   justify-content: space-between;
+}
+
+tui-loader {
+  height: 100%;
 }

@@ -2,6 +2,7 @@ import { TitleCasePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TuiButtonModule, TuiLoaderModule } from '@taiga-ui/core';
+import { EmptyListComponent } from '../../../shared/components/empty-list-icon/empty-list.component';
 import { StatisticItem } from '../../domain/statistic-item';
 import { StatisticProvider } from '../../services/providers/statistic-providers/statistic-provider.service';
 
@@ -13,6 +14,7 @@ import { StatisticProvider } from '../../services/providers/statistic-providers/
         RouterLink,
         TuiLoaderModule,
         TitleCasePipe,
+        EmptyListComponent,
     ],
     templateUrl: './statistic-list.component.html',
     styleUrl: './statistic-list.component.scss',
