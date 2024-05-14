@@ -1,10 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormControl } from '@angular/forms';
 import { of } from 'rxjs';
+import { SeriesService } from '../../../services/series.service';
 import { StatisticService } from '../../../statistic/services/statistic.service';
 
 import { SeriesInputComponent } from './series-input.component';
 
-describe('GenreInputComponent', () => {
+describe('SeriesInputComponent', () => {
   let component: SeriesInputComponent;
   let fixture: ComponentFixture<SeriesInputComponent>;
 
@@ -13,9 +15,9 @@ describe('GenreInputComponent', () => {
       imports: [SeriesInputComponent],
       providers: [
         {
-          provide: StatisticService,
+          provide: SeriesService,
           useValue: {
-            getGenres: () => of([])
+            searchSeries: () => of([])
           }
         }
       ]
@@ -24,6 +26,9 @@ describe('GenreInputComponent', () => {
     
     fixture = TestBed.createComponent(SeriesInputComponent);
     component = fixture.componentInstance;
+
+    component.control = new FormControl();
+
     fixture.detectChanges();
   });
 

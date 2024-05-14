@@ -42,7 +42,7 @@
             </form-header>
 
             @if (seriesEnabledValue) {
-                <form-row flex="true">
+                <form-row flex="true" data-testid="series-row">
                     <series-input [control]="form.controls.series"></series-input>
 
                     <tui-input-number formControlName="seriesNumber">
@@ -62,7 +62,7 @@
         </form-row>
 
         @if (statusValue === BookStatus.IN_PROGRESS || statusValue === BookStatus.DONE) {
-            <form-row>
+            <form-row data-testid="start-date-row">
                 <tui-input-date formControlName="startDate">
                     Начало чтения
                 </tui-input-date>
@@ -70,7 +70,7 @@
         }
 
         @if (statusValue === BookStatus.DONE) {
-            <form-row>
+            <form-row data-testid="end-date-row">
                 <tui-input-date formControlName="finishDate">
                     Окончание чтения
                 </tui-input-date>

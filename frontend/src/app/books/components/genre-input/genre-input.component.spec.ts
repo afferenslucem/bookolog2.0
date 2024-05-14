@@ -1,4 +1,6 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormControl } from '@angular/forms';
 import { of } from 'rxjs';
 import { StatisticService } from '../../../statistic/services/statistic.service';
 
@@ -24,6 +26,9 @@ describe('GenreInputComponent', () => {
     
     fixture = TestBed.createComponent(GenreInputComponent);
     component = fixture.componentInstance;
+
+    component.control = new FormControl();
+
     fixture.detectChanges();
   });
 

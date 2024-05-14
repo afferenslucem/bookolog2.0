@@ -1,8 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormControl } from '@angular/forms';
 
 import { TypeSelectComponent } from './type-select.component';
 
-describe('StatusSelectComponent', () => {
+describe('TypeSelectComponent', () => {
   let component: TypeSelectComponent;
   let fixture: ComponentFixture<TypeSelectComponent>;
 
@@ -14,6 +15,9 @@ describe('StatusSelectComponent', () => {
     
     fixture = TestBed.createComponent(TypeSelectComponent);
     component = fixture.componentInstance;
+
+    component.control = new FormControl();
+
     fixture.detectChanges();
   });
 

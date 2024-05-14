@@ -56,7 +56,7 @@ app.UseCors(options =>
         "https://bookolog.ru",
         "http://185.204.0.105.ru",
         "https://185.204.0.105.ru",
-        "http://localhost:59021"
+        "http://localhost:58575"
     ]).AllowCredentials().AllowAnyMethod().AllowAnyHeader();
 });
 

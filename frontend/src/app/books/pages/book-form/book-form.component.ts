@@ -1,16 +1,19 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TuiDay, TuiDestroyService } from '@taiga-ui/cdk';
 import { TuiButtonModule, TuiLoaderModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
 import {
     TuiComboBoxModule,
     TuiInputDateModule,
     TuiInputModule,
     TuiInputNumberModule,
-    TuiTextareaModule, TuiToggleModule,
+    TuiTextareaModule,
+    TuiToggleModule,
 } from '@taiga-ui/kit';
-import { BehaviorSubject, filter, first, map, tap } from 'rxjs';
+import { filter, first, map, takeUntil, tap } from 'rxjs';
 import { Book, BookStatus, BookType, ReadDate } from '../../../domain/book';
+import { BookService } from '../../../services/book.service';
 import { PagePadding, ViewContainer } from '../../../shared';
 import { FormLayoutModule } from '../../../shared/form-layout/form-layout.module';
 import { AuthorsInputComponent } from '../../components/authors-input/authors-input.component';
@@ -19,7 +22,6 @@ import { SeriesInputComponent } from '../../components/series-input/series-input
 import { StatusSelectComponent } from '../../components/status-select/status-select.component';
 import { TagsInputComponent } from '../../components/tags-input/tags-input.component';
 import { TypeSelectComponent } from '../../components/type-select/type-select.component';
-import { BookService } from '../../../services/book.service';
 
 interface BookForm {
     id: FormControl<number | null>;
@@ -59,6 +61,7 @@ interface BookForm {
         TuiToggleModule,
         SeriesInputComponent,
     ],
+    providers: [TuiDestroyService],
     hostDirectives: [PagePadding, ViewContainer],
     templateUrl: './book-form.component.html',
     styleUrl: './book-form.component.scss',
@@ -79,8 +82,10 @@ export default class BookFormComponent {
         return this.form.controls.seriesEnabled.value;
     }
 
-    public constructor(private activatedRoute: ActivatedRoute, private bookClient: BookService, private router: Router) {
+    public constructor(private activatedRoute: ActivatedRoute, private bookClient: BookService, private router: Router, private destroy$: TuiDestroyService) {
         this.form = this.createFormGroup();
+
+        this.form.controls.status.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(status => this.onStatusChange(status));
 
         this.activatedRoute.params.pipe(
             first(),
@@ -111,6 +116,18 @@ export default class BookFormComponent {
         });
     }
 
+    private onStatusChange(status: BookStatus | null) {
+        switch (status) {
+            case BookStatus.IN_PROGRESS: {
+                this.form.controls.startDate.setValue(TuiDay.fromLocalNativeDate(new Date()));
+                return;
+            }
+            case BookStatus.DONE: {
+                this.form.controls.finishDate.setValue(TuiDay.fromLocalNativeDate(new Date()));
+            }
+        }
+    }
+
     private createFormGroup(): FormGroup<BookForm> {
         return new FormGroup<BookForm>({
             id: new FormControl(null),
@@ -120,8 +137,8 @@ export default class BookFormComponent {
             tags: new FormArray([new FormControl('', { nonNullable: true })]),
             genre: new FormControl(null, { updateOn: 'blur', validators: Validators.required }),
             status: new FormControl<BookStatus | null>(null, { validators: Validators.required }),
-            series: new FormControl<string | null>(null, { validators: Validators.required }),
-            seriesNumber: new FormControl<number | null>(null, { validators: Validators.required }),
+            series: new FormControl<string | null>(null, { updateOn: 'blur' }),
+            seriesNumber: new FormControl<number | null>(null, { updateOn: 'blur' }),
             seriesEnabled: new FormControl<boolean>(false, { nonNullable: true }),
             type: new FormControl<BookType | null>(null, { validators: Validators.required }),
             startDate: new FormControl<ReadDate | null>(null, { updateOn: 'blur' }),
@@ -137,10 +154,10 @@ export default class BookFormComponent {
             this.form.patchValue(book);
 
             this.form.patchValue({
-                seriesEnabled: !!book.series
-            })
+                seriesEnabled: !!book.series,
+            });
 
-            this.book.set(book)
+            this.book.set(book);
         });
     }
 

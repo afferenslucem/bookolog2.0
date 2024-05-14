@@ -1,5 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Subject } from 'rxjs';
 
 import LoginPageComponent from './login-page.component';
 
@@ -8,9 +10,23 @@ describe('LoginPageComponent', () => {
     let fixture: ComponentFixture<LoginPageComponent>;
     let el: HTMLElement;
 
+    let params$ = new Subject<Params>();
+
+    let activatedRoute: ActivatedRoute;
+
     beforeEach(async () => {
+        activatedRoute = {
+            params: params$,
+        } as any;
+
         await TestBed.configureTestingModule({
             imports: [LoginPageComponent, HttpClientModule],
+            providers: [
+                {
+                    provide: ActivatedRoute,
+                    useValue: activatedRoute
+                }
+            ]
         })
             .compileComponents();
 
