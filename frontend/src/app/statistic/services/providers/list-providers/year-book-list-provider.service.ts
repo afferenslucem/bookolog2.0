@@ -15,7 +15,7 @@ export class YearBookListProvider extends BookListProvider {
     public override getBooks(): Observable<Book[]> {
         return this.route.paramMap.pipe(
             map(params => params.get('statisticParam')),
-            switchMap(param => this.bookService.searchBooks({ year: Number(param), status: BookStatus.DONE })),
+            switchMap(param => this.bookService.searchBooks({ year: Number(param), status: BookStatus.DONE, order: { fieldName: 'finishDate', direction: 'desc' } })),
         )
     }
 }
