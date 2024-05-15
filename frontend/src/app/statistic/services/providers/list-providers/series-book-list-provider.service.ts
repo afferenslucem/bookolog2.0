@@ -15,7 +15,10 @@ export class SeriesBookListProvider extends BookListProvider {
     public override getBooks(): Observable<Book[]> {
         return this.route.paramMap.pipe(
             map(params => params.get('statisticParam')),
-            switchMap(param => this.bookService.searchBooks({ series: param! })),
-        )
+            switchMap(param => this.bookService.searchBooks({
+                series: param!,
+                order: { fieldName: 'seriesNumber', direction: 'asc' },
+            })),
+        );
     }
 }
