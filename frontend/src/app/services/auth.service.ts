@@ -29,4 +29,8 @@ export class AuthService {
     public signIn(loginData: LoginData): Observable<void> {
         return this.httpClient.post(`/Auth/SignIn`, loginData).pipe(map(() => undefined));
     }
+
+    public signOut(): Observable<void> {
+        return this.httpClient.get<void>('/auth/logout');
+    }
 }

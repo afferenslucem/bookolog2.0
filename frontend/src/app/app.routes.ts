@@ -16,13 +16,6 @@ function AuthGuard(): Observable<boolean | UrlTree> {
         );
 }
 
-function LogoutGuard(): Observable<boolean | UrlTree> {
-    const userService = inject(UserService);
-
-    return userService.logout()
-        .pipe(map(() => true));
-}
-
 export const routes: Routes = [
     {
         path: '',
@@ -49,7 +42,6 @@ export const routes: Routes = [
             },
             {
                 path: 'login',
-                canActivate: [LogoutGuard],
                 loadComponent: () => import('./auth/pages/login-page/login-page.component'),
                 data: {
                     title: {
@@ -59,7 +51,7 @@ export const routes: Routes = [
             },
             {
                 path: 'logout',
-                redirectTo: 'login'
+                loadComponent: () => import('./auth/pages/logout-page/logout-page.component'),
             },
             {
                 path: 'registration',

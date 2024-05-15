@@ -15,8 +15,4 @@ export class UserService {
             map(() => true),
         );
     }
-
-    public logout(): Observable<void> {
-        return this.http.get<void>('/auth/logout');
-    }
 }
