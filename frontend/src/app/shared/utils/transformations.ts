@@ -1,6 +1,6 @@
 import { TuiDay } from '@taiga-ui/cdk';
 import { TransformFnParams } from 'class-transformer';
-import { ReadDate } from '../../domain/book';
+import { Book, ReadDate } from '../../domain/book';
 
 export function defaultValue<T>($default: T | nil): any {
     return (param: TransformFnParams) => param.value ?? $default;
@@ -21,7 +21,7 @@ export function toNativeDate(param: TransformFnParams): Date | null {
 
     if (!value) return null;
 
-    return new Date(value.year, value.month ?? 1, value.day ?? 1);
+    return new Date(value.year, value.month ?? 0, value.day ?? 1);
 }
 
 export function filterEmptyItems<T>(param: TransformFnParams): T[] {
@@ -36,6 +36,20 @@ export function excludeNull<T>(param: TransformFnParams): T | undefined {
     return value ?? undefined;
 }
 
+export function wordTitleCase(param: TransformFnParams): string[] | string | nil {
+    const value = param.value as string[] | string;
+
+    if (value == null) {
+        return null;
+    }
+
+    if (Array.isArray(value)) {
+        return value.filter(Boolean).map(everyWordTitleCase);
+    } else {
+        return everyWordTitleCase(value);
+    }
+}
+
 export function titleCase(param: TransformFnParams): string[] | string | nil {
     const value = param.value as string[] | string;
 
@@ -44,14 +58,18 @@ export function titleCase(param: TransformFnParams): string[] | string | nil {
     }
 
     if (Array.isArray(value)) {
-        return value.map(toTitleCase);
+        return value.filter(Boolean).map(toTitleCase);
     } else {
         return toTitleCase(value);
     }
 }
 
-function toTitleCase(string: string): string {
+function everyWordTitleCase(string: string): string {
     return string.trim().split(' ')
-        .map(word => word[0].toUpperCase() + word.slice(1))
+        .map(word => toTitleCase(word))
         .join(' ');
+}
+
+function toTitleCase(string: string): string {
+    return string[0].toUpperCase() + string.slice(1)
 }

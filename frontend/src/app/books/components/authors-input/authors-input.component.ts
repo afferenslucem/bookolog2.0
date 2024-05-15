@@ -27,7 +27,7 @@ export class AuthorsInputComponent extends ArrayInputComponent implements OnInit
     }
 
     protected override isEmpty(value: string): boolean {
-        return !value.trim();
+        return !value?.trim();
     }
 
     protected readonly tuiIconPlusSquareLarge = tuiIconPlusSquareLarge;

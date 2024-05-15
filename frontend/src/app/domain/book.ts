@@ -5,7 +5,7 @@ import {
     filterEmptyItems,
     titleCase,
     toNativeDate,
-    toReadDate,
+    toReadDate, wordTitleCase,
 } from '../shared/utils/transformations';
 
 export enum BookStatus {
@@ -32,12 +32,13 @@ export class Book {
     public name: string = null!;
     public note?: string | null;
 
+    @Transform(titleCase, { toPlainOnly: true })
     public series?: string | null;
     public seriesNumber?: number | null;
 
     @Transform(defaultValue([]))
     @Transform(filterEmptyItems, { toPlainOnly: true })
-    @Transform(titleCase, { toPlainOnly: true })
+    @Transform(wordTitleCase, { toPlainOnly: true })
     public authors: string[] = null!;
 
     @Transform(defaultValue([]))
