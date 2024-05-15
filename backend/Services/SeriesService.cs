@@ -35,7 +35,7 @@ public class SeriesService : ISeriesService
             .GroupBy(book => book.Series, (series, books) => new
             {
                 Name = series, 
-                Count = books.Count(), 
+                Count = books.Select(item => item.Name).Distinct().Count(), 
                 ModifyDate = books.Select(book => book.ModifyDate).Max()
             })
             .OrderByDescending(item => item.ModifyDate)

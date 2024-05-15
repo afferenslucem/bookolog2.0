@@ -88,7 +88,8 @@ public class BookService : IBookService
 
         if (options?.Series != null)
         {
-            books = books.Where(book => book.Series.ToLower() == options.Series.ToLower());
+            books = books
+                .Where(book => book.Series.ToLower() == options.Series.ToLower());
         }
 
         if (options?.Order?.Direction.ToLower() == "asc")
@@ -99,7 +100,7 @@ public class BookService : IBookService
         {
             books = books.OrderBy(GetNullOrder(options)).ThenByDescending(GetOrderProperty(options));
         }
-        
+
         return await books.ToArrayAsync();
     }
 
