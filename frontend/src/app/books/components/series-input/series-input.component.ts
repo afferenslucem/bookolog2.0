@@ -5,6 +5,7 @@ import { TuiDataListModule } from '@taiga-ui/core';
 import { TuiComboBoxModule, TuiDataListWrapperModule, TuiFilterByInputPipeModule, TuiInputModule } from '@taiga-ui/kit';
 import { map } from 'rxjs';
 import { SeriesService } from '../../../services/series.service';
+import { FirstLetterUpPipe } from '../../../shared/pipes/first-letter-up.pipe';
 
 @Component({
     selector: 'series-input',
@@ -17,6 +18,7 @@ import { SeriesService } from '../../../services/series.service';
         NgForOf,
         TuiDataListModule,
         TuiInputModule,
+        FirstLetterUpPipe,
     ],
     templateUrl: './series-input.component.html',
     styleUrl: './series-input.component.scss',

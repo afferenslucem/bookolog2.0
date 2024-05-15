@@ -4,6 +4,7 @@ import { ChangeDetectionStrategy, Component, Input, signal } from '@angular/core
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { TuiDataListModule } from '@taiga-ui/core';
 import { TuiComboBoxModule, TuiDataListWrapperModule, TuiFilterByInputPipeModule, TuiInputModule } from '@taiga-ui/kit';
+import { FirstLetterUpPipe } from '../../../shared/pipes/first-letter-up.pipe';
 import { StatisticService } from '../../../statistic/services/statistic.service';
 
 @Component({
@@ -17,6 +18,7 @@ import { StatisticService } from '../../../statistic/services/statistic.service'
         NgForOf,
         TuiDataListModule,
         TuiInputModule,
+        FirstLetterUpPipe,
     ],
     templateUrl: './genre-input.component.html',
     styleUrl: './genre-input.component.scss',

@@ -1,4 +1,4 @@
-import { AsyncPipe, NgForOf } from '@angular/common';
+import { AsyncPipe, NgForOf, TitleCasePipe } from '@angular/common';
 import { Component, Input, signal } from '@angular/core';
 import { FormArray, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { TuiDataListModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
@@ -9,14 +9,15 @@ import { StatisticService } from '../../../statistic/services/statistic.service'
 @Component({
   selector: 'author-combobox',
   standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    TuiTextfieldControllerModule,
-    TuiDataListModule,
-    NgForOf,
-    TuiInputModule,
-    TuiFilterByInputPipeModule,
-  ],
+    imports: [
+        ReactiveFormsModule,
+        TuiTextfieldControllerModule,
+        TuiDataListModule,
+        NgForOf,
+        TuiInputModule,
+        TuiFilterByInputPipeModule,
+        TitleCasePipe,
+    ],
   templateUrl: './author-combobox.component.html',
   styleUrl: './author-combobox.component.scss'
 })

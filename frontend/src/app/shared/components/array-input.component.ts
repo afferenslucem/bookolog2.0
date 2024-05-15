@@ -25,7 +25,7 @@ export abstract class ArrayInputComponent implements OnInit {
         const values = this.controlArray.value;
         const emptyIndex = values.findIndex(item => this.isEmpty(item));
 
-        if (emptyIndex === -1) {
+        if (emptyIndex === -1 || values.length === 1) {
             return;
         }
 

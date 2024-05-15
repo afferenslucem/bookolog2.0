@@ -3,10 +3,10 @@
         <a tuiButton size="m" appearance="flat" [routerLink]="[item.name]">
             <div class="content">
                 <span>
-                    {{ (item.name ?? 'Не указано') | titlecase }}
+                    {{ (item.name ? item.name : 'Не указано') | firstLetterUp }}
                 </span>
                 <span>
-                {{ item.count }}
+                    {{ item.count }}
                 </span>
             </div>
         </a>
