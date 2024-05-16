@@ -16,4 +16,12 @@ export class SeriesService {
     public searchSeries(): Observable<StatisticItem[]> {
         return this.httpClient.get<StatisticItem[]>('/series');
     }
+
+    public getBooksForSeries(name: string): Observable<Book[]> {
+        return this.httpClient.post<Book[]>(`/series/books`, {
+            series: name
+        }).pipe(
+            map(books => plainToInstance(Book, books))
+        );
+    }
 }
