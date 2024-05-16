@@ -215,4 +215,60 @@ describe('BookFormComponent', () => {
 
         expect(button.classList.contains('_disabled')).toBeTruthy();
     })
+
+    describe('redirects', () => {
+        it('redirects to in-progress', () => {
+            sut.form.patchValue({
+                name: 'Book name',
+                status: BookStatus.IN_PROGRESS,
+                type: BookType.PAPER,
+            });
+
+            fixture.detectChanges();
+
+            spyOn(http, 'post').and.returnValue(of({ status: BookStatus.IN_PROGRESS }));
+
+            const redirectSpy = spyOn(router, 'navigate')
+
+            el.querySelector<HTMLButtonElement>('[data-testid="save-button"]')!.click();
+
+            expect(redirectSpy).toHaveBeenCalledOnceWith(['../../'], { relativeTo: activatedRoute })
+        })
+
+        it('redirects to done', () => {
+            sut.form.patchValue({
+                name: 'Book name',
+                status: BookStatus.DONE,
+                type: BookType.PAPER,
+            });
+
+            fixture.detectChanges();
+
+            spyOn(http, 'post').and.returnValue(of({ status: BookStatus.DONE }));
+
+            const redirectSpy = spyOn(router, 'navigate')
+
+            el.querySelector<HTMLButtonElement>('[data-testid="save-button"]')!.click();
+
+            expect(redirectSpy).toHaveBeenCalledOnceWith(['../../done'], { relativeTo: activatedRoute })
+        })
+
+        it('redirects to to-read', () => {
+            sut.form.patchValue({
+                name: 'Book name',
+                status: BookStatus.TO_READ,
+                type: BookType.PAPER,
+            });
+
+            fixture.detectChanges();
+
+            spyOn(http, 'post').and.returnValue(of({ status: BookStatus.TO_READ }));
+
+            const redirectSpy = spyOn(router, 'navigate')
+
+            el.querySelector<HTMLButtonElement>('[data-testid="save-button"]')!.click();
+
+            expect(redirectSpy).toHaveBeenCalledOnceWith(['../../to-read'], { relativeTo: activatedRoute })
+        })
+    })
 });

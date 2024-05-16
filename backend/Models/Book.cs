@@ -35,8 +35,7 @@ public class Book
     public string[] Tags { get; set; }
     
     [Column(TypeName = "varchar(256)")]
-    [Required]
-    public string Genre { get; set; }
+    public string? Genre { get; set; }
     
     [Column(TypeName = "varchar(256)")]
     public string? Series { get; set; }
