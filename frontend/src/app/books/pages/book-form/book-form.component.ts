@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TuiDay, TuiDestroyService } from '@taiga-ui/cdk';
-import { TuiButtonModule, TuiLoaderModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
+import { TuiAlertService, TuiButtonModule, TuiLoaderModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
 import {
     TuiComboBoxModule,
     TuiInputDateModule,
@@ -83,7 +83,13 @@ export default class BookFormComponent {
         return this.form.controls.seriesEnabled.value;
     }
 
-    public constructor(private activatedRoute: ActivatedRoute, private bookClient: BookService, private router: Router, private destroy$: TuiDestroyService) {
+    public constructor(
+        private alertService: TuiAlertService,
+        private activatedRoute: ActivatedRoute,
+        private bookClient: BookService,
+        private router: Router,
+        private destroy$: TuiDestroyService,
+    ) {
         this.form = this.createFormGroup();
 
         this.form.controls.status.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(status => this.onStatusChange(status));
@@ -100,23 +106,27 @@ export default class BookFormComponent {
     public save() {
         this.disabledButton.set(true);
 
-        this.bookClient.saveBook(Object.assign(new Book(), this.form.getRawValue())).subscribe(book => {
-            switch (book.status) {
-                case BookStatus.IN_PROGRESS: {
-                    this.router.navigate(['../../'], { relativeTo: this.activatedRoute });
-                    return;
-                }
-                case BookStatus.DONE: {
-                    this.router.navigate(['../../done'], { relativeTo: this.activatedRoute });
-                    return;
-                }
-                case BookStatus.TO_READ: {
-                    this.router.navigate(['../../to-read'], { relativeTo: this.activatedRoute });
-                    return;
-                }
-            }
-
-        });
+        this.bookClient.saveBook(Object.assign(new Book(), this.form.getRawValue()))
+            .subscribe({
+                next: book => {
+                    this.alertService.open('Книга успешно сохранена', { status: 'success' }).subscribe();
+                    switch (book.status) {
+                        case BookStatus.IN_PROGRESS: {
+                            this.router.navigate(['../../'], { relativeTo: this.activatedRoute });
+                            return;
+                        }
+                        case BookStatus.DONE: {
+                            this.router.navigate(['../../done'], { relativeTo: this.activatedRoute });
+                            return;
+                        }
+                        case BookStatus.TO_READ: {
+                            this.router.navigate(['../../to-read'], { relativeTo: this.activatedRoute });
+                            return;
+                        }
+                    }
+                },
+                error: () => this.alertService.open('Ошибка при сохранении книги', { status: 'error' }).subscribe(),
+            });
     }
 
     private onStatusChange(status: BookStatus | null) {
