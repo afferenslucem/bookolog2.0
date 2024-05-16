@@ -11,3 +11,10 @@
 
   --secondary-text: var(--tui-font-text-s)
 }
+
+.required-label {
+  &::after {
+    content: "*";
+    color: var(--tui-error-fill);
+  }
+}
