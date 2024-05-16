@@ -232,7 +232,7 @@ describe('BookFormComponent', () => {
 
             el.querySelector<HTMLButtonElement>('[data-testid="save-button"]')!.click();
 
-            expect(redirectSpy).toHaveBeenCalledOnceWith(['../../'], { relativeTo: activatedRoute })
+            expect(redirectSpy).toHaveBeenCalledOnceWith(['/books/in-progress'])
         })
 
         it('redirects to done', () => {
@@ -250,7 +250,7 @@ describe('BookFormComponent', () => {
 
             el.querySelector<HTMLButtonElement>('[data-testid="save-button"]')!.click();
 
-            expect(redirectSpy).toHaveBeenCalledOnceWith(['../../done'], { relativeTo: activatedRoute })
+            expect(redirectSpy).toHaveBeenCalledOnceWith(['/books/done'])
         })
 
         it('redirects to to-read', () => {
@@ -268,7 +268,7 @@ describe('BookFormComponent', () => {
 
             el.querySelector<HTMLButtonElement>('[data-testid="save-button"]')!.click();
 
-            expect(redirectSpy).toHaveBeenCalledOnceWith(['../../to-read'], { relativeTo: activatedRoute })
+            expect(redirectSpy).toHaveBeenCalledOnceWith(['/books/to-read'])
         })
     })
 });

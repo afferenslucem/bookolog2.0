@@ -112,15 +112,15 @@ export default class BookFormComponent {
                     this.alertService.open('Книга успешно сохранена', { status: 'success' }).subscribe();
                     switch (book.status) {
                         case BookStatus.IN_PROGRESS: {
-                            this.router.navigate(['../../'], { relativeTo: this.activatedRoute });
+                            this.router.navigate(['/books/in-progress']);
                             return;
                         }
                         case BookStatus.DONE: {
-                            this.router.navigate(['../../done'], { relativeTo: this.activatedRoute });
+                            this.router.navigate(['/books/done']);
                             return;
                         }
                         case BookStatus.TO_READ: {
-                            this.router.navigate(['../../to-read'], { relativeTo: this.activatedRoute });
+                            this.router.navigate(['/books/to-read']);
                             return;
                         }
                     }
