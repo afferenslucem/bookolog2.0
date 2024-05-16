@@ -1,7 +1,9 @@
-<tui-loader [showLoader]="books() == null" [overlay]="true">
+<tui-loader [showLoader]="books() == null" [overlay]="true" size="xl">
     @for (book of books(); track book.id) {
         <app-book-list-item [book]="book" [routerLink]="['/', 'books', book.id]" />
-    } @empty {
+    }
+
+    @if (books() != null && !books()?.length) {
         <empty-list></empty-list>
     }
 </tui-loader>

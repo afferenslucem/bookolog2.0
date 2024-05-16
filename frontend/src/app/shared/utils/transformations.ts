@@ -39,8 +39,8 @@ export function excludeNull<T>(param: TransformFnParams): T | undefined {
 export function wordTitleCase(param: TransformFnParams): string[] | string | nil {
     const value = param.value as string[] | string;
 
-    if (value == null) {
-        return null;
+    if (!value) {
+        return value;
     }
 
     if (Array.isArray(value)) {
@@ -53,8 +53,8 @@ export function wordTitleCase(param: TransformFnParams): string[] | string | nil
 export function titleCase(param: TransformFnParams): string[] | string | nil {
     const value = param.value as string[] | string;
 
-    if (value == null) {
-        return null;
+    if (!value) {
+        return value;
     }
 
     if (Array.isArray(value)) {

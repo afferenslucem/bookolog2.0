@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { plainToInstance } from 'class-transformer';
 import { map, Observable } from 'rxjs';
-import { StatisticItem } from '../domain/statistic-item';
+import { AuthorStatisticItem, StatisticItem } from '../domain/statistic-item';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,9 @@ export class StatisticService {
   constructor(private httpClient: HttpClient) { }
 
   public getGenresStatistic(): Observable<StatisticItem[]> {
-    return this.httpClient.get<StatisticItem[]>('/statistic/genres')
+    return this.httpClient.get<StatisticItem[]>('/statistic/genres').pipe(
+        map(result => plainToInstance(StatisticItem, result))
+    )
   }
 
   public getGenres(): Observable<string[]> {
@@ -20,11 +23,15 @@ export class StatisticService {
   }
 
   public getAuthorsStatistic(): Observable<StatisticItem[]> {
-    return this.httpClient.get<StatisticItem[]>('/statistic/authors')
+    return this.httpClient.get<StatisticItem[]>('/statistic/authors').pipe(
+        map(result => plainToInstance(AuthorStatisticItem, result))
+    )
   }
 
   public getYearsStatistic(): Observable<StatisticItem[]> {
-    return this.httpClient.get<StatisticItem[]>('/statistic/years')
+    return this.httpClient.get<StatisticItem[]>('/statistic/years').pipe(
+        map(result => plainToInstance(StatisticItem, result))
+    )
   }
 
   public getAuthors(): Observable<string[]> {
@@ -34,7 +41,9 @@ export class StatisticService {
   }
 
   public getTagsStatistic(): Observable<StatisticItem[]> {
-    return this.httpClient.get<StatisticItem[]>('/statistic/tags')
+    return this.httpClient.get<StatisticItem[]>('/statistic/tags').pipe(
+        map(result => plainToInstance(StatisticItem, result))
+    )
   }
 
   public getTags(): Observable<string[]> {

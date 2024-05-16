@@ -1,4 +1,4 @@
-<tui-loader [showLoader]="items() == null" [overlay]="true" size="l">
+<tui-loader [showLoader]="items() == null" [overlay]="true" size="xl">
     @for (item of items(); track item.name) {
         <a tuiButton size="m" appearance="flat" [routerLink]="[item.name]">
             <div class="content">
@@ -10,7 +10,9 @@
                 </span>
             </div>
         </a>
-    } @empty {
+    }
+
+    @if (items() != null && !items()?.length) {
         <empty-list></empty-list>
     }
 </tui-loader>

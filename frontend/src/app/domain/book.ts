@@ -32,21 +32,21 @@ export class Book {
     public name: string = null!;
     public note?: string | null;
 
-    @Transform(titleCase, { toPlainOnly: true })
+    @Transform(titleCase)
     public series?: string | null;
     public seriesNumber?: number | null;
 
     @Transform(defaultValue([]))
     @Transform(filterEmptyItems, { toPlainOnly: true })
-    @Transform(wordTitleCase, { toPlainOnly: true })
+    @Transform(wordTitleCase)
     public authors: string[] = null!;
 
     @Transform(defaultValue([]))
     @Transform(filterEmptyItems, { toPlainOnly: true })
-    @Transform(titleCase, { toPlainOnly: true })
+    @Transform(titleCase)
     public tags: string[] = [];
 
-    @Transform(titleCase, { toPlainOnly: true })
+    @Transform(titleCase)
     public genre?: string | null;
 
     public status: BookStatus = null!;

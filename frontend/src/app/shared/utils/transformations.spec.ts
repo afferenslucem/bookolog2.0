@@ -71,6 +71,12 @@ describe('transformations', () => {
 
             expect(result).toBeNull()
         })
+
+        it('returns empty string', () => {
+            const result = wordTitleCase({ value: '' } as TransformFnParams);
+
+            expect(result).toBe('')
+        })
     })
 
     describe('titleCase', () => {
@@ -90,6 +96,12 @@ describe('transformations', () => {
             const result = titleCase({ value: null } as TransformFnParams);
 
             expect(result).toBeNull()
+        })
+
+        it('returns empty string', () => {
+            const result = titleCase({ value: '' } as TransformFnParams);
+
+            expect(result).toBe('')
         })
     })
 });
