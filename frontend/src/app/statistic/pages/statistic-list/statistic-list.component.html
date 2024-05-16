@@ -13,6 +13,6 @@
     }
 
     @if (items() != null && !items()?.length) {
-        <empty-list></empty-list>
+        <empty-list [attr.data-testid]="'empty-list-placeholder'"></empty-list>
     }
 </tui-loader>
