@@ -197,4 +197,22 @@ describe('BookFormComponent', () => {
 
         expect(row).toBeFalsy();
     });
+
+    it('disables button on save', () => {
+        sut.form.patchValue({
+            name: 'Book name',
+            status: BookStatus.DONE,
+            type: BookType.PAPER,
+        })
+
+        fixture.detectChanges();
+
+        const button = el.querySelector<HTMLButtonElement>('[data-testid="save-button"]')!;
+        expect(button.classList.contains('_disabled')).toBeFalsy();
+
+        button.click();
+        fixture.detectChanges();
+
+        expect(button.classList.contains('_disabled')).toBeTruthy();
+    })
 });

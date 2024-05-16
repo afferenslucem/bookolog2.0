@@ -73,6 +73,7 @@ export default class BookFormComponent {
 
     public id = signal<number | null>(null);
     public book = signal<Book | null>(null);
+    public disabledButton = signal(false);
 
     public get statusValue(): BookStatus | null {
         return this.form.controls.status.value;
@@ -97,6 +98,8 @@ export default class BookFormComponent {
     }
 
     public save() {
+        this.disabledButton.set(true);
+
         this.bookClient.saveBook(Object.assign(new Book(), this.form.getRawValue())).subscribe(book => {
             switch (book.status) {
                 case BookStatus.IN_PROGRESS: {
@@ -135,7 +138,7 @@ export default class BookFormComponent {
             note: new FormControl('', { updateOn: 'blur' }),
             authors: new FormArray([new FormControl('', { nonNullable: true })]),
             tags: new FormArray([new FormControl('', { nonNullable: true })]),
-            genre: new FormControl(null, { updateOn: 'blur', validators: Validators.required }),
+            genre: new FormControl(null, { updateOn: 'blur' }),
             status: new FormControl<BookStatus | null>(null, { validators: Validators.required }),
             series: new FormControl<string | null>(null, { updateOn: 'blur' }),
             seriesNumber: new FormControl<number | null>(null, { updateOn: 'blur' }),

@@ -77,7 +77,13 @@
             </form-row>
         }
 
-        <button type="submit" tuiButton size="m" (click)="save()" [disabled]="form.invalid">
+        <button [attr.data-testid]="'save-button'"
+                type="submit"
+                tuiButton
+                size="m"
+                (click)="save()"
+                [disabled]="form.invalid || disabledButton()"
+        >
             Сохранить
         </button>
     </form-layout>
