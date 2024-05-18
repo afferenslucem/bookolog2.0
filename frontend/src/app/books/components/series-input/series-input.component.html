@@ -12,7 +12,7 @@
             <button
                     *ngFor="let series of series() | tuiFilterByInput"
                     tuiOption
-                    [value]="series"
+                    [value]="series | firstLetterUp"
             >
                 {{ series | firstLetterUp }}
             </button>

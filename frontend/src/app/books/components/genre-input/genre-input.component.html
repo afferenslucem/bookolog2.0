@@ -12,7 +12,7 @@
             <button
                     *ngFor="let genre of genres() | tuiFilterByInput"
                     tuiOption
-                    [value]="genre"
+                    [value]="genre | firstLetterUp"
             >
                 {{ genre | firstLetterUp }}
             </button>

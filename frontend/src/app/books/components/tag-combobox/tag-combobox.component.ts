@@ -3,6 +3,7 @@ import { Component, Input, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { TuiDataListModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
 import { TuiFilterByInputPipeModule, TuiInputModule } from '@taiga-ui/kit';
+import { PrefillService } from '../../../services/prefill.service';
 import { FirstLetterUpPipe } from '../../../shared/pipes/first-letter-up.pipe';
 import { StatisticService } from '../../../statistic/services/statistic.service';
 
@@ -27,7 +28,7 @@ export class TagComboboxComponent {
 
     public tags = signal<string[]>([]);
 
-    public constructor(private statistic: StatisticService) {
-        this.statistic.getTags().subscribe(result => this.tags.set(result));
+    public constructor(private prefill: PrefillService) {
+        this.prefill.getTags().subscribe(result => this.tags.set(result));
     }
 }

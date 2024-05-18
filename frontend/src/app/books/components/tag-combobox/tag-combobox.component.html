@@ -13,7 +13,7 @@
             <button
                     *ngFor="let tags of tags() | tuiFilterByInput"
                     tuiOption
-                    [value]="tags"
+                    [value]="tags | firstLetterUp"
             >
                 {{ tags | firstLetterUp }}
             </button>

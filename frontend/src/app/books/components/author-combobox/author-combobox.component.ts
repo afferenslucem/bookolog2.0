@@ -1,14 +1,14 @@
-import { AsyncPipe, NgForOf, TitleCasePipe } from '@angular/common';
+import { NgForOf, TitleCasePipe } from '@angular/common';
 import { Component, Input, signal } from '@angular/core';
-import { FormArray, FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { TuiDataListModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
-import { TuiComboBoxModule, TuiDataListWrapperModule, TuiFilterByInputPipeModule, TuiInputModule } from '@taiga-ui/kit';
-import { BehaviorSubject, combineLatest, delay, map, Observable, of, Subject } from 'rxjs';
+import { TuiFilterByInputPipeModule, TuiInputModule } from '@taiga-ui/kit';
+import { PrefillService } from '../../../services/prefill.service';
 import { StatisticService } from '../../../statistic/services/statistic.service';
 
 @Component({
-  selector: 'author-combobox',
-  standalone: true,
+    selector: 'author-combobox',
+    standalone: true,
     imports: [
         ReactiveFormsModule,
         TuiTextfieldControllerModule,
@@ -18,16 +18,16 @@ import { StatisticService } from '../../../statistic/services/statistic.service'
         TuiFilterByInputPipeModule,
         TitleCasePipe,
     ],
-  templateUrl: './author-combobox.component.html',
-  styleUrl: './author-combobox.component.scss'
+    templateUrl: './author-combobox.component.html',
+    styleUrl: './author-combobox.component.scss',
 })
 export class AuthorComboboxComponent {
-  @Input({ required: true })
-  public control!: FormControl<string>;
+    @Input({ required: true })
+    public control!: FormControl<string>;
 
-  public authors = signal<string[]>([]);
+    public authors = signal<string[]>([]);
 
-  public constructor(private statistic: StatisticService) {
-    this.statistic.getAuthors().subscribe(result => this.authors.set(result));
-  }
+    public constructor(private prefill: PrefillService) {
+        this.prefill.getAuthors().subscribe(result => this.authors.set(result));
+    }
 }

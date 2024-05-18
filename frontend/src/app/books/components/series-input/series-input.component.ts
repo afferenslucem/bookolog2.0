@@ -3,8 +3,7 @@ import { ChangeDetectionStrategy, Component, Input, signal } from '@angular/core
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { TuiDataListModule } from '@taiga-ui/core';
 import { TuiComboBoxModule, TuiDataListWrapperModule, TuiFilterByInputPipeModule, TuiInputModule } from '@taiga-ui/kit';
-import { map } from 'rxjs';
-import { SeriesService } from '../../../services/series.service';
+import { PrefillService } from '../../../services/prefill.service';
 import { FirstLetterUpPipe } from '../../../shared/pipes/first-letter-up.pipe';
 
 @Component({
@@ -30,9 +29,7 @@ export class SeriesInputComponent {
     @Input({ required: true })
     public control: FormControl<string | null> = null!;
 
-    public constructor(private seriesService: SeriesService) {
-        this.seriesService.searchSeries()
-            .pipe(map(result => result.map(item => item.name)))
-            .subscribe(result => this.series.set(result));
+    public constructor(private prefill: PrefillService) {
+        this.prefill.getSeries().subscribe(result => this.series.set(result));
     }
 }

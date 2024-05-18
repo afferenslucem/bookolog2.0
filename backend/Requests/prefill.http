@@ -1,0 +1,19 @@
+@bookolog_HostAddress = http://localhost:5185
+
+GET {{bookolog_HostAddress}}/Prefill/Authors
+Accept: application/json
+
+###
+
+GET {{bookolog_HostAddress}}/Prefill/Genres
+Accept: application/json
+
+###
+
+GET {{bookolog_HostAddress}}/Prefill/Tags
+Accept: application/json
+
+###
+
+GET {{bookolog_HostAddress}}/Prefill/Series
+Accept: application/json

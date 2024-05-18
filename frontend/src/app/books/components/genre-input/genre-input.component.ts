@@ -4,6 +4,7 @@ import { ChangeDetectionStrategy, Component, Input, signal } from '@angular/core
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { TuiDataListModule } from '@taiga-ui/core';
 import { TuiComboBoxModule, TuiDataListWrapperModule, TuiFilterByInputPipeModule, TuiInputModule } from '@taiga-ui/kit';
+import { PrefillService } from '../../../services/prefill.service';
 import { FirstLetterUpPipe } from '../../../shared/pipes/first-letter-up.pipe';
 import { StatisticService } from '../../../statistic/services/statistic.service';
 
@@ -30,7 +31,7 @@ export class GenreInputComponent {
     @Input({ required: true })
     public control: FormControl<string | null> = null!;
 
-    public constructor(private statistic: StatisticService) {
-        this.statistic.getGenres().subscribe(result => this.genres.set(result));
+    public constructor(private prefill: PrefillService) {
+        this.prefill.getGenres().subscribe(result => this.genres.set(result));
     }
 }

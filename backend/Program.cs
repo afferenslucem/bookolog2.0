@@ -13,6 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IPrefillService, PrefillService>();
 builder.Services.AddScoped<IBookService, BookService>();
 builder.Services.AddScoped<IStatisticService, StatisticService>();
 builder.Services.AddScoped<ISeriesService, SeriesService>();
