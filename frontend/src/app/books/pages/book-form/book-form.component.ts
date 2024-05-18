@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TuiDay, TuiDestroyService } from '@taiga-ui/cdk';
 import { TuiAlertService, TuiButtonModule, TuiLoaderModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
@@ -14,7 +14,7 @@ import {
 import { filter, first, map, takeUntil, tap } from 'rxjs';
 import { Book, BookStatus, BookType, ReadDate } from '../../../domain/book';
 import { BookService } from '../../../services/book.service';
-import { PagePadding, ViewContainer } from '../../../shared';
+import { FormHelper, PagePadding, ViewContainer } from '../../../shared';
 import { FormLayoutModule } from '../../../shared/form-layout/form-layout.module';
 import { AuthorsInputComponent } from '../../components/authors-input/authors-input.component';
 import { GenreInputComponent } from '../../components/genre-input/genre-input.component';
@@ -156,7 +156,24 @@ export default class BookFormComponent {
             type: new FormControl<BookType | null>(null, { validators: Validators.required }),
             startDate: new FormControl<ReadDate | null>(null, { updateOn: 'blur' }),
             finishDate: new FormControl<ReadDate | null>(null, { updateOn: 'blur' }),
+        }, {
+            validators: [this.seriesRequired]
         });
+    }
+
+    private seriesRequired(group: AbstractControl): null {
+        const form = group as FormGroup<BookForm>;
+
+        const seriesEnabled = form.controls.seriesEnabled.value;
+        const series = form.controls.series.value;
+
+        if (seriesEnabled && !series) {
+            FormHelper.addError(form.controls.series, 'required');
+        } else {
+            FormHelper.removeError(form.controls.series, 'required');
+        }
+
+        return null;
     }
 
     private tryLoadBook(id: number): void {

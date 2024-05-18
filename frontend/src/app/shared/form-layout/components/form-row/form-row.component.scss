@@ -13,6 +13,7 @@
 
     &::ng-deep > * {
       flex: 1 1 auto;
+      margin-top: 0;
     }
 
     &::ng-deep > * + * {

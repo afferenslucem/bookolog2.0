@@ -271,4 +271,39 @@ describe('BookFormComponent', () => {
             expect(redirectSpy).toHaveBeenCalledOnceWith(['/books/to-read'])
         })
     })
+
+    describe('validations', () => {
+        it('skips series validation', () => {
+            sut.form.patchValue({
+                seriesEnabled: false,
+                series: ''
+            })
+
+            const valid = sut.form.controls.series.valid;
+
+            expect(valid).toBeTruthy();
+        })
+
+        it('returns series invalid', () => {
+            sut.form.patchValue({
+                seriesEnabled: true,
+                series: ''
+            })
+
+            const valid = sut.form.controls.series.valid;
+
+            expect(valid).toBeFalsy();
+        })
+
+        it('returns series valid', () => {
+            sut.form.patchValue({
+                seriesEnabled: true,
+                series: 'qwerty'
+            })
+
+            const valid = sut.form.controls.series.valid;
+
+            expect(valid).toBeTruthy();
+        })
+    })
 });

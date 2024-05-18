@@ -43,12 +43,16 @@
 
             @if (seriesEnabledValue) {
                 <form-row flex="true" data-testid="series-row">
-                    <series-input [control]="form.controls.series"></series-input>
+                    <form-row>
+                        <series-input [control]="form.controls.series"></series-input>
+                    </form-row>
 
-                    <tui-input-number formControlName="seriesNumber">
-                        Номер книги
-                        <input tuiTextfield/>
-                    </tui-input-number>
+                    <form-row>
+                        <tui-input-number formControlName="seriesNumber">
+                            Номер книги
+                            <input tuiTextfield/>
+                        </tui-input-number>
+                    </form-row>
                 </form-row>
             }
         </form-section>
