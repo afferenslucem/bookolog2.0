@@ -36,6 +36,14 @@ export function excludeNull<T>(param: TransformFnParams): T | undefined {
     return value ?? undefined;
 }
 
+export function excludeEmptyString(param: TransformFnParams): string | undefined {
+    const value = param.value as string;
+
+    if (!value?.trim()) return undefined;
+
+    return value;
+}
+
 export function wordTitleCase(param: TransformFnParams): string[] | string | nil {
     const value = param.value as string[] | string;
 

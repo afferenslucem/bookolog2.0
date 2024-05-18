@@ -1,6 +1,6 @@
 import { TransformFnParams } from 'class-transformer';
 import { ReadDate } from '../../domain/book';
-import { titleCase, toNativeDate, toReadDate, wordTitleCase } from './transformations';
+import { excludeEmptyString, titleCase, toNativeDate, toReadDate, wordTitleCase } from './transformations';
 
 describe('transformations', () => {
     describe('toReadDate', () => {
@@ -102,6 +102,31 @@ describe('transformations', () => {
             const result = titleCase({ value: '' } as TransformFnParams);
 
             expect(result).toBe('')
+        })
+    })
+    describe('excludeEmptyString', () => {
+        it('returns undefined for empty string', () => {
+            const result = excludeEmptyString({ value: '' } as TransformFnParams);
+
+            expect(result).toBe(undefined);
+        })
+
+        it('returns undefined for space string', () => {
+            const result = excludeEmptyString({ value: ' ' } as TransformFnParams);
+
+            expect(result).toBe(undefined);
+        })
+
+        it('returns undefined for null string', () => {
+            const result = excludeEmptyString({ value: null } as TransformFnParams);
+
+            expect(result).toBe(undefined);
+        })
+
+        it('returns string', () => {
+            const result = excludeEmptyString({ value: 'string' } as TransformFnParams);
+
+            expect(result).toBe('string');
         })
     })
 });

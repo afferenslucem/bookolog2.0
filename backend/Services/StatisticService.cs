@@ -49,7 +49,7 @@ public class StatisticService : IStatisticService
         var userBooks = dbContext.Books
             .Where(book => book.UserId == userId && book.Status == BookStatus.Done);
 
-        var genres = userBooks.Where(book => book.Genre != null && book.Genre != "").Select(book => book.Genre);
+        var genres = userBooks.Where(book => book.Genre != null).Select(book => book.Genre);
 
         if (pattern != null)
         {

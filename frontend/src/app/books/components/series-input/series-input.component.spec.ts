@@ -1,38 +1,37 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl } from '@angular/forms';
 import { of } from 'rxjs';
-import { SeriesService } from '../../../services/series.service';
-import { StatisticService } from '../../../statistic/services/statistic.service';
+import { PrefillService } from '../../../services/prefill.service';
 
 import { SeriesInputComponent } from './series-input.component';
 
 describe('SeriesInputComponent', () => {
-  let component: SeriesInputComponent;
-  let fixture: ComponentFixture<SeriesInputComponent>;
+    let component: SeriesInputComponent;
+    let fixture: ComponentFixture<SeriesInputComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [SeriesInputComponent],
-      providers: [
-        {
-          provide: SeriesService,
-          useValue: {
-            searchSeries: () => of([])
-          }
-        }
-      ]
-    })
-    .compileComponents();
-    
-    fixture = TestBed.createComponent(SeriesInputComponent);
-    component = fixture.componentInstance;
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            imports: [SeriesInputComponent],
+            providers: [
+                {
+                    provide: PrefillService,
+                    useValue: {
+                        getSeries: () => of([]),
+                    },
+                },
+            ],
+        })
+            .compileComponents();
 
-    component.control = new FormControl();
+        fixture = TestBed.createComponent(SeriesInputComponent);
+        component = fixture.componentInstance;
 
-    fixture.detectChanges();
-  });
+        component.control = new FormControl();
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+        fixture.detectChanges();
+    });
+
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

@@ -1,6 +1,6 @@
 import { Transform } from 'class-transformer';
 import {
-    defaultValue,
+    defaultValue, excludeEmptyString,
     excludeNull,
     filterEmptyItems,
     titleCase,
@@ -29,10 +29,12 @@ export interface ReadDate {
 export class Book {
     @Transform(excludeNull, { toPlainOnly: true })
     public id: number = null!;
+
     public name: string = null!;
     public note?: string | null;
 
     @Transform(titleCase)
+    @Transform(excludeEmptyString, { toPlainOnly: true })
     public series?: string | null;
     public seriesNumber?: number | null;
 
@@ -47,6 +49,7 @@ export class Book {
     public tags: string[] = [];
 
     @Transform(titleCase)
+    @Transform(excludeEmptyString, { toPlainOnly: true })
     public genre?: string | null;
 
     public status: BookStatus = null!;
