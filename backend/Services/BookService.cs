@@ -117,8 +117,8 @@ public class BookService : IBookService
         {
             "seriesnumber" => book => book.SeriesNumber,
             "startdate" => book => book.StartDate,
-            "finishdate" => book => book.FinishDate,
-            _ => book => book.ModifyDate,
+            "modifydate" => book => book.ModifyDate,
+            _ => book => book.FinishDate,
         };
 
         return keySelector;
@@ -130,8 +130,8 @@ public class BookService : IBookService
         {
             "seriesnumber" => book => book.SeriesNumber == null,
             "startdate" => book => book.StartDate == null,
-            "finishdate" => book => book.FinishDate == null,
-            _ => book => book.ModifyDate == null,
+            "modifydate" => book => book.ModifyDate == null,
+            _ => book => book.FinishDate == null,
         };
 
         return keySelector;

@@ -25,7 +25,7 @@ import { StatisticProvider } from '../../services/providers/statistic-providers/
 export default class StatisticListComponent {
     public items = signal<StatisticItem[] | null>(null);
 
-    public constructor(private statisticProvider: StatisticProvider) {
+    public constructor(public statisticProvider: StatisticProvider) {
         this.statisticProvider.load().subscribe(items => this.items.set(items));
     }
 }

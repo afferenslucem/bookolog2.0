@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { StatisticItem } from '../../../domain/statistic-item';
-import { StatisticProvider } from './statistic-provider.service';
 import { StatisticService } from '../../statistic.service';
+import { StatisticProvider } from './statistic-provider.service';
 
 @Injectable()
 export class YearStatisticProvider extends StatisticProvider {
@@ -12,6 +12,9 @@ export class YearStatisticProvider extends StatisticProvider {
     }
 
     public load(): Observable<StatisticItem[]> {
-        return this.statisticService.getYearsStatistic();
+        this.loading.set(true);
+        return this.statisticService.getYearsStatistic().pipe(
+            tap(() => this.loading.set(false)),
+        );
     }
 }

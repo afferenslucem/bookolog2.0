@@ -2,9 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TitleNode } from '../layout/components/title/title.component';
-import { BookListProvider } from '../shared/services/book-list-provider.service';
 import { statisticTitleResolver } from './resolvers/statistic-title.resolver';
-import { AuthorBookListProvider } from './services/providers/list-providers/author-book-list-provider.service';
 import { AuthorStatisticProvider } from './services/providers/statistic-providers/author-statistic-provider.service';
 import { GenreStatisticProvider } from './services/providers/statistic-providers/genre-statistic-provider.service';
 import { SeriesStatisticProvider } from './services/providers/statistic-providers/series-statistic-provider.service';
@@ -25,6 +23,7 @@ import { YearStatisticProvider } from './services/providers/statistic-providers/
                     title: {
                         name: 'Жанры',
                     } as TitleNode,
+                    searchEnabled: true,
                 },
                 providers: [
                     {
@@ -38,6 +37,9 @@ import { YearStatisticProvider } from './services/providers/statistic-providers/
                 resolve: {
                     title: statisticTitleResolver,
                 },
+                data: {
+                    searchEnabled: true,
+                },
                 loadComponent: () => import('./pages/genre-book-list/genre-book-list.component'),
             },
             {
@@ -47,6 +49,7 @@ import { YearStatisticProvider } from './services/providers/statistic-providers/
                     title: {
                         name: 'Теги',
                     } as TitleNode,
+                    searchEnabled: true,
                 },
                 providers: [
                     {
@@ -60,6 +63,9 @@ import { YearStatisticProvider } from './services/providers/statistic-providers/
                 resolve: {
                     title: statisticTitleResolver,
                 },
+                data: {
+                    searchEnabled: true,
+                },
                 loadComponent: () => import('./pages/tag-book-list/tag-book-list.component'),
             },
             {
@@ -69,6 +75,7 @@ import { YearStatisticProvider } from './services/providers/statistic-providers/
                     title: {
                         name: 'Авторы',
                     } as TitleNode,
+                    searchEnabled: true,
                 },
                 providers: [
                     {
@@ -82,6 +89,9 @@ import { YearStatisticProvider } from './services/providers/statistic-providers/
                 resolve: {
                     title: statisticTitleResolver,
                 },
+                data: {
+                    searchEnabled: true,
+                },
                 loadComponent: () => import('./pages/author-book-list/author-book-list.component'),
             },
             {
@@ -91,6 +101,7 @@ import { YearStatisticProvider } from './services/providers/statistic-providers/
                     title: {
                         name: 'Года прочтения',
                     } as TitleNode,
+                    searchEnabled: false,
                 },
                 providers: [
                     {
@@ -104,6 +115,9 @@ import { YearStatisticProvider } from './services/providers/statistic-providers/
                 resolve: {
                     title: statisticTitleResolver,
                 },
+                data: {
+                    searchEnabled: true,
+                },
                 loadComponent: () => import('./pages/year-book-list/year-book-list.component'),
             },
             {
@@ -113,6 +127,7 @@ import { YearStatisticProvider } from './services/providers/statistic-providers/
                     title: {
                         name: 'Серии',
                     } as TitleNode,
+                    searchEnabled: true,
                 },
                 providers: [
                     {
@@ -126,10 +141,13 @@ import { YearStatisticProvider } from './services/providers/statistic-providers/
                 resolve: {
                     title: statisticTitleResolver,
                 },
+                data: {
+                    searchEnabled: false,
+                },
                 loadComponent: () => import('./pages/series-book-list/series-book-list.component'),
             },
         ]),
-    ]
+    ],
 })
 export class StatisticModule {
 }

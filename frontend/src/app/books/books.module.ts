@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { BookStatus } from '../domain/book';
 import { TitleNode } from '../layout/components/title/title.component';
 import { BookListProvider } from '../shared/services/book-list-provider.service';
 import { DoneBooksListProvider } from './services/done-books-list-provider.service';
@@ -26,6 +25,7 @@ import { ToReadBooksListProvider } from './services/to-read-books-list-provider.
                     title: {
                         name: 'Создание книги'
                     } as TitleNode,
+                    searchEnabled: false,
                 }
             },
             {
@@ -35,6 +35,7 @@ import { ToReadBooksListProvider } from './services/to-read-books-list-provider.
                     title: {
                         name: 'Редактирование книги'
                     } as TitleNode,
+                    searchEnabled: false,
                 }
             },
             {
@@ -45,6 +46,7 @@ import { ToReadBooksListProvider } from './services/to-read-books-list-provider.
                     title: {
                         name: 'Читаю',
                     } as TitleNode,
+                    searchEnabled: true,
                 },
                 providers: [
                     {
@@ -61,7 +63,7 @@ import { ToReadBooksListProvider } from './services/to-read-books-list-provider.
                     title: {
                         name: 'К прочтению',
                     } as TitleNode,
-                    status: BookStatus.TO_READ,
+                    searchEnabled: true,
                 },
                 providers: [
                     {
@@ -78,7 +80,7 @@ import { ToReadBooksListProvider } from './services/to-read-books-list-provider.
                     title: {
                         name: 'Прочитано',
                     } as TitleNode,
-                    status: BookStatus.DONE,
+                    searchEnabled: true,
                 },
                 providers: [
                     {

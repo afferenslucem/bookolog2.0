@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, effect, HostBinding, Signal, signal } from '@angular/core';
-import { ActivationEnd, Router } from '@angular/router';
-import { TuiSheetDialogOptions, TuiSheetDialogService } from '@taiga-ui/addon-mobile';
-import { tuiIconMenuLarge } from '@taiga-ui/icons';
-import { filter } from 'rxjs';
+import { ChangeDetectionStrategy, Component, HostBinding, Signal, signal } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { TuiSheetDialogOptions } from '@taiga-ui/addon-mobile';
+import { tuiIconMenuLarge, tuiIconSearch } from '@taiga-ui/icons';
+import { SearchService } from '../../services/search.service';
 import { TitleService } from '../../services/title.service';
 
 export interface TitleNode {
@@ -28,6 +28,18 @@ export class TitleComponent {
         return this.titleService.title;
     }
 
+    public get searchEnabled(): Signal<boolean> {
+        return this.titleService.searchEnabled;
+    }
+
+    public searchOpened = signal<boolean>(false);
+
+    public searchControl = new FormControl<string>('');
+
+    public get searchHasContent(): boolean {
+        return !!this.searchControl.value;
+    }
+
     @HostBinding('style.display')
     public get isHidden(): 'none' | nil {
         return this.title().hidden ? 'none' : null;
@@ -35,6 +47,17 @@ export class TitleComponent {
 
     public readonly tuiIconMenuLarge = tuiIconMenuLarge;
 
-    public constructor(private titleService: TitleService, private sheets: TuiSheetDialogService) {
+    public constructor(private titleService: TitleService, private searchService: SearchService) {
+        this.searchControl.valueChanges.subscribe(value => this.searchService.setValue(value));
     }
+
+    public closeSearch(): void {
+        this.searchOpened.set(false);
+    }
+
+    public toggleSearch(): void {
+        this.searchOpened.set(!this.searchOpened());
+    }
+
+    protected readonly tuiIconSearch = tuiIconSearch;
 }

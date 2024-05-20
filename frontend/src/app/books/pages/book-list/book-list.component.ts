@@ -19,7 +19,7 @@ import { BookListItemComponent } from './components/book-list-item/book-list-ite
 export default class BookListComponent {
     public books = signal<Book[] | null>(null);
 
-    public constructor(private bookListProvider: BookListProvider) {
+    public constructor(public bookListProvider: BookListProvider) {
         this.bookListProvider.getBooks().subscribe(books => this.books.set(books));
     }
 }

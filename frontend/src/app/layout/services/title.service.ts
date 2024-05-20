@@ -8,6 +8,7 @@ import { TitleNode } from '../components/title/title.component';
 })
 export class TitleService {
   public title = signal<TitleNode>({});
+    public searchEnabled = signal(false);
 
   constructor(private router: Router) {
     this.router.events.pipe(
@@ -16,5 +17,12 @@ export class TitleService {
     ).subscribe((e: ActivationEnd) => {
       this.title.set(e.snapshot.data['title']);
     });
+
+      this.router.events.pipe(
+          filter(e => e instanceof ActivationEnd),
+          filter((e: any) => e.snapshot.data['searchEnabled'] != null),
+      ).subscribe((e: ActivationEnd) => {
+          this.searchEnabled.set(e.snapshot.data['searchEnabled'] ?? false);
+      });
   }
 }

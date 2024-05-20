@@ -1,4 +1,4 @@
-<tui-loader [showLoader]="books() == null" [overlay]="true" size="xl">
+<tui-loader [showLoader]="bookListProvider.loading()" [overlay]="true" size="xl">
     @for (book of books(); track book.id) {
         <app-book-list-item [book]="book" [routerLink]="['/', 'books', book.id]" />
     }

@@ -1,5 +1,6 @@
 <button tuiIconButton [icon]="tuiIconMenuLarge" size="m" appearance="flat" (click)="open = true">
 </button>
+
 <div class="title-placeholder">
     {{ title().name }}
 </div>
@@ -11,3 +12,18 @@
 >
     <app-sidebar (routeChanges)="observable.complete()"></app-sidebar>
 </ng-template>
+
+@if (searchEnabled()) {
+    <div class="search-block">
+        <tui-input [formControl]="searchControl" [tuiTextfieldSize]="'m'" class="search-input"
+                   [tuiTextfieldLabelOutside]="true"
+                   [class.search-input--opened]="searchOpened() || searchHasContent">
+            Введите значение
+
+            <input tuiTextfield (blur)="closeSearch()"/>
+        </tui-input>
+
+        <button tuiIconButton [icon]="tuiIconSearch" size="m" appearance="outline" (click)="toggleSearch()"></button>
+    </div>
+}
+

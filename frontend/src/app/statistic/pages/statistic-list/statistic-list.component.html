@@ -1,4 +1,4 @@
-<tui-loader [showLoader]="items() == null" [overlay]="true" size="xl">
+<tui-loader [showLoader]="statisticProvider.loading()" [overlay]="true" size="xl">
     @for (item of items(); track item.name) {
         <a tuiButton size="m" appearance="flat" [routerLink]="[item.name]">
             <div class="content">

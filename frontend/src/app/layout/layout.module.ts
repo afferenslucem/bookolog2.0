@@ -1,9 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RouterLink, RouterOutlet } from '@angular/router';
 import { TuiSheetDialogModule } from '@taiga-ui/addon-mobile';
 import { TuiActiveZoneModule } from '@taiga-ui/cdk';
-import { TuiButtonModule } from '@taiga-ui/core';
+import { TuiButtonModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
+import { TuiInputModule } from '@taiga-ui/kit';
 import { PageLayoutComponent } from './components/page-layout/page-layout.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { TitleComponent } from './components/title/title.component';
@@ -18,6 +20,9 @@ import { TitleComponent } from './components/title/title.component';
         TuiButtonModule,
         TuiActiveZoneModule,
         TuiSheetDialogModule,
+        TuiInputModule,
+        ReactiveFormsModule,
+        TuiTextfieldControllerModule,
     ],
 })
 export class LayoutModule {

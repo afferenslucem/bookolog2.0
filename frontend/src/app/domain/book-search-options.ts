@@ -2,7 +2,7 @@ import { Book, BookStatus } from './book';
 import { Order } from './order';
 
 export class BookSearchOptions {
-    public pattern?: string;
+    public pattern?: string | null;
     public tag?: string;
     public author?: string;
     public series?: string;

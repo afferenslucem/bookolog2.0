@@ -1,4 +1,6 @@
 :host {
+  position: relative;
+
   display: flex;
   align-items: center;
 
@@ -9,4 +11,31 @@
   border-bottom: 1px solid var(--border-color);
 
   font: var(--tui-font-heading-6);
+}
+
+.search-block {
+  position: absolute;
+
+  top: 0;
+  right: 0.5rem;
+  left: 3rem;
+
+  display: flex;
+  justify-content: space-between;
+
+  padding: 0.25rem;
+
+  gap: 0.5rem;
+}
+
+.search-input {
+  flex: 0 1 auto;
+  visibility: hidden;
+
+  &--opened {
+    flex-grow: 1;
+    visibility: visible;
+
+    transition: all ease-in-out 0.3s;
+  }
 }

@@ -28,7 +28,7 @@ public class SeriesService : ISeriesService
 
         if (pattern != null)
         {
-            bookWithSeries = bookWithSeries.Where(book => book.Series!.Contains(pattern));
+            bookWithSeries = bookWithSeries.Where(book => book.Series.ToLower().Contains(pattern.ToLower()));
         }
 
         var statistic = await bookWithSeries

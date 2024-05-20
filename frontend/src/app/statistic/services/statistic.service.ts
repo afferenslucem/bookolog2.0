@@ -5,50 +5,57 @@ import { map, Observable } from 'rxjs';
 import { AuthorStatisticItem, StatisticItem } from '../domain/statistic-item';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
 export class StatisticService {
-  constructor(private httpClient: HttpClient) { }
+    constructor(private httpClient: HttpClient) {
+    }
 
-  public getGenresStatistic(): Observable<StatisticItem[]> {
-    return this.httpClient.get<StatisticItem[]>('/statistic/genres').pipe(
-        map(result => plainToInstance(StatisticItem, result))
-    )
-  }
+    public getGenresStatistic(pattern?: string | null): Observable<StatisticItem[]> {
+        const params: any = {};
 
-  public getGenres(): Observable<string[]> {
-    return this.getGenresStatistic().pipe(
-        map(genres => genres.map(item => item.name))
-    )
-  }
+        if (pattern) {
+            params['pattern'] = pattern;
+        }
 
-  public getAuthorsStatistic(): Observable<StatisticItem[]> {
-    return this.httpClient.get<StatisticItem[]>('/statistic/authors').pipe(
-        map(result => plainToInstance(AuthorStatisticItem, result))
-    )
-  }
+        return this.httpClient.get<StatisticItem[]>(`/statistic/genres`, {
+            params,
+        }).pipe(
+            map(result => plainToInstance(StatisticItem, result)),
+        );
+    }
 
-  public getYearsStatistic(): Observable<StatisticItem[]> {
-    return this.httpClient.get<StatisticItem[]>('/statistic/years').pipe(
-        map(result => plainToInstance(StatisticItem, result))
-    )
-  }
+    public getAuthorsStatistic(pattern?: string | null): Observable<StatisticItem[]> {
+        const params: any = {};
 
-  public getAuthors(): Observable<string[]> {
-    return this.getAuthorsStatistic().pipe(
-        map(genres => genres.map(item => item.name))
-    )
-  }
+        if (pattern) {
+            params['pattern'] = pattern;
+        }
 
-  public getTagsStatistic(): Observable<StatisticItem[]> {
-    return this.httpClient.get<StatisticItem[]>('/statistic/tags').pipe(
-        map(result => plainToInstance(StatisticItem, result))
-    )
-  }
+        return this.httpClient.get<StatisticItem[]>('/statistic/authors', {
+            params,
+        }).pipe(
+            map(result => plainToInstance(AuthorStatisticItem, result)),
+        );
+    }
 
-  public getTags(): Observable<string[]> {
-    return this.getTagsStatistic().pipe(
-        map(genres => genres.map(item => item.name))
-    )
-  }
+    public getYearsStatistic(): Observable<StatisticItem[]> {
+        return this.httpClient.get<StatisticItem[]>('/statistic/years').pipe(
+            map(result => plainToInstance(StatisticItem, result)),
+        );
+    }
+
+    public getTagsStatistic(pattern?: string | null): Observable<StatisticItem[]> {
+        const params: any = {};
+
+        if (pattern) {
+            params['pattern'] = pattern;
+        }
+
+        return this.httpClient.get<StatisticItem[]>('/statistic/tags', {
+            params,
+        }).pipe(
+            map(result => plainToInstance(StatisticItem, result)),
+        );
+    }
 }

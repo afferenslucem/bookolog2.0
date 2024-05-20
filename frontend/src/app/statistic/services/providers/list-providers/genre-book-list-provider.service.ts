@@ -1,21 +1,17 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { map, Observable, switchMap } from 'rxjs';
-import { BookService } from '../../../../books';
-import { Book, BookStatus } from '../../../../domain/book';
+import { BookStatus } from '../../../../domain/book';
+import { BookSearchOptions } from '../../../../domain/book-search-options';
 import { BookListProvider } from '../../../../shared/services/book-list-provider.service';
 
 @Injectable()
 export class GenreBookListProvider extends BookListProvider {
 
-    constructor(private route: ActivatedRoute, private bookService: BookService) {
+    constructor(private route: ActivatedRoute) {
         super();
     }
 
-    public override getBooks(): Observable<Book[]> {
-        return this.route.paramMap.pipe(
-            map(params => params.get('statisticParam')),
-            switchMap(param => this.bookService.searchBooks({ genre: param!, status: BookStatus.DONE })),
-        )
+    protected override getFilter(): BookSearchOptions {
+        return { genre: this.route.snapshot.params['statisticParam'], status: BookStatus.DONE };
     }
 }

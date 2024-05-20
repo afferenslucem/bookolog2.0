@@ -32,7 +32,7 @@ public class StatisticService : IStatisticService
 
         if (pattern != null)
         {
-            authors = authors.Where(author => author.Contains(pattern));
+            authors = authors.Where(author => author.ToLower().Contains(pattern.ToLower()));
         }
 
         var statistic = await authors
@@ -53,7 +53,7 @@ public class StatisticService : IStatisticService
 
         if (pattern != null)
         {
-            genres = genres.Where(genre => genre.Contains(pattern));
+            genres = genres.Where(genre => genre.ToLower().Contains(pattern.ToLower()));
         }
 
         var statistic = await genres
@@ -74,7 +74,7 @@ public class StatisticService : IStatisticService
 
         if (pattern != null)
         {
-            tags = tags.Where(tag => tag.Contains(pattern));
+            tags = tags.Where(tag => tag.ToLower().Contains(pattern.ToLower()));
         }
 
         var statistic = await tags
