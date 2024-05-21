@@ -1,7 +1,8 @@
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { ApplicationConfig, importProvidersFrom } from '@angular/core';
+import { ApplicationConfig, importProvidersFrom, isDevMode } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter } from '@angular/router';
+import { provideServiceWorker } from '@angular/service-worker';
 import { TuiRootModule } from '@taiga-ui/core';
 
 import { routes } from './app.routes';
@@ -16,5 +17,9 @@ export const appConfig: ApplicationConfig = {
         INTERCEPTOR_PROVIDERS,
         FIELD_ERROR_PROVIDER,
         provideHttpClient(withInterceptorsFromDi()),
+        provideServiceWorker('ngsw-worker.js', {
+            enabled: !isDevMode(),
+            registrationStrategy: 'registerWhenStable:30000',
+        }),
     ],
 };
