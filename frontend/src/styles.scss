@@ -18,3 +18,28 @@
     color: var(--tui-error-fill);
   }
 }
+
+.error-page {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-flow: column;
+
+  height: 60%;
+
+  &__code {
+    color: var(--tui-warning-fill);
+
+    font-size: 6rem;
+    font-weight: 600;
+
+    line-height: 7.5rem;
+  }
+
+  &__description {
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
+}

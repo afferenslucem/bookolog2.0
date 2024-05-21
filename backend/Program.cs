@@ -42,6 +42,10 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     {
         options.ExpireTimeSpan = TimeSpan.FromDays(365);
         options.SlidingExpiration = true;
+        options.Events.OnRedirectToAccessDenied = context => {
+            context.Response.StatusCode = 403;
+            return Task.CompletedTask;
+        };
     });
 
 var app = builder.Build();

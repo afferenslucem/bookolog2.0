@@ -34,6 +34,18 @@ public class BookController : Controller
     [HttpPut("{bookId}")]
     public async Task<IActionResult> UpdateBook(long bookId, [FromBody] Book entity)
     {
+        var originBook = await _bookService.GetById(bookId);
+
+        if (originBook == null)
+        {
+            return NotFound();
+        }
+        
+        if (originBook.UserId != UserId)
+        {
+            return Forbid();
+        }
+        
         entity.UserId = this.UserId;
         entity.ModifyDate = DateTime.UtcNow;
         entity.Id = bookId;
@@ -51,6 +63,11 @@ public class BookController : Controller
         if (book == null)
         {
             return NotFound();
+        }
+        
+        if (book.UserId != UserId)
+        {
+            return Forbid();
         }
 
         return Ok(book);

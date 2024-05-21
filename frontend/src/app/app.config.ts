@@ -9,5 +9,12 @@ import { INTERCEPTOR_PROVIDERS } from './interceptors/interceptor-providers';
 import { FIELD_ERROR_PROVIDER } from './shared/errors';
 
 export const appConfig: ApplicationConfig = {
-    providers: [provideAnimations(), provideRouter(routes), importProvidersFrom(TuiRootModule), INTERCEPTOR_PROVIDERS, FIELD_ERROR_PROVIDER, provideHttpClient(withInterceptorsFromDi())],
+    providers: [
+        provideAnimations(),
+        provideRouter(routes),
+        importProvidersFrom(TuiRootModule),
+        INTERCEPTOR_PROVIDERS,
+        FIELD_ERROR_PROVIDER,
+        provideHttpClient(withInterceptorsFromDi()),
+    ],
 };
