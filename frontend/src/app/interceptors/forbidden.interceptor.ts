@@ -16,7 +16,7 @@ export class ForbiddenInterceptor implements HttpInterceptor {
 
     private handleNotFoundError(error: HttpErrorResponse): Observable<any> {
         if (error.status === 403) {
-            this.router.navigateByUrl(`/403`);
+            this.router.navigateByUrl(`/error/403`);
             return of(error.message);
         }
         return throwError(() => error);

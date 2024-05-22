@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { TuiButtonModule, TuiDialogContext } from '@taiga-ui/core';
 import { POLYMORPHEUS_CONTEXT } from '@tinkoff/ng-polymorpheus';
 
@@ -14,6 +15,7 @@ export interface ConfirmationDialogContext {
   standalone: true,
   imports: [
     TuiButtonModule,
+    TranslateModule,
   ],
   templateUrl: './confirmation-dialog.component.html',
   styleUrl: './confirmation-dialog.component.scss',
@@ -34,11 +36,11 @@ export class ConfirmationDialogComponent {
   }
 
   public get cancelButtonText(): string {
-    return this.context.data.cancelButtonText ?? 'Отменить';
+    return this.context.data.cancelButtonText ?? 'CONTROLS.CANCEL';
   }
 
   public get confirmButtonText(): string {
-    return this.context.data.confirmButtonText ?? 'Продолжить';
+    return this.context.data.confirmButtonText ?? 'CONTROLS.CONTINUE';
   }
 
   public cancel(): void {

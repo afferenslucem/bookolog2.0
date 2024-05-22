@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 import { TuiDestroyService, TuiLetModule } from '@taiga-ui/cdk';
 import { TuiButtonModule, TuiDialogService, TuiLoaderModule } from '@taiga-ui/core';
 import { tuiIconDraft } from '@taiga-ui/icons';
@@ -31,6 +32,7 @@ import {
         RouterLink,
         BookStatusStringifyPipe,
         BookTypeStringifyPipe,
+        TranslateModule,
     ],
     templateUrl: './book.component.html',
     styleUrl: './book.component.scss',
@@ -67,15 +69,28 @@ export default class BookComponent {
                 switchMap(() => this.bookService.deleteBook(this.book()!.id)),
                 takeUntil(this.destroy$))
             .subscribe(() => {
-                this.router.navigate(['../'], { relativeTo: this.activatedRoute });
+                switch (this.book()!.status) {
+                    case BookStatus.IN_PROGRESS: {
+                        this.router.navigate(['/books/in-progress']);
+                        return;
+                    }
+                    case BookStatus.DONE: {
+                        this.router.navigate(['/books/done']);
+                        return;
+                    }
+                    case BookStatus.TO_READ: {
+                        this.router.navigate(['/books/to-read']);
+                        return;
+                    }
+                }
             });
     }
 
     private showDeleteDialog(): Observable<boolean> {
         return this.dialog$.open(new PolymorpheusComponent(ConfirmationDialogComponent), {
             data: {
-                header: 'Удалить книгу?',
-                description: 'Отменить это действие будет невозможно',
+                header: 'BOOK_DELETE_DIALOG.HEADER',
+                description: 'BOOK_DELETE_DIALOG.DESCRIPTION',
             } as ConfirmationDialogContext,
         });
     }

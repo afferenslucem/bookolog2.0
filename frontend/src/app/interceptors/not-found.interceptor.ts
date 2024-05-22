@@ -16,7 +16,7 @@ export class NotFoundInterceptor implements HttpInterceptor {
 
     private handleNotFoundError(error: HttpErrorResponse): Observable<any> {
         if (error.status === 404) {
-            this.router.navigateByUrl(`/404`);
+            this.router.navigateByUrl(`/error/404`);
             return of(error.message);
         }
         return throwError(() => error);

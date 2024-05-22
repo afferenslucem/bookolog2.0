@@ -5,7 +5,7 @@
     @if (book.authors.length) {
         {{ book.authors | join }}
     } @else {
-        Нет авторов
+        {{ 'BOOK_LIST_ITEM.NO_AUTHORS' | translate }}
     }
 </div>
 @if (book.startDate || book.finishDate) {

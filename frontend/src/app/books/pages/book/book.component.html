@@ -20,7 +20,7 @@
             <div class="body">
                 <div class="line">
                     <div class="line__header">
-                        Статус
+                        {{ 'BOOK_PAGE.LABELS.STATUS' | translate }}
                     </div>
 
                     {{ book.status | bookStatusStringify }}
@@ -29,7 +29,7 @@
 
                 <div class="line">
                     <div class="line__header">
-                        Тип
+                        {{ 'BOOK_PAGE.LABELS.TYPE' | translate }}
                     </div>
 
                     {{ book.type | bookTypeStringify }}
@@ -38,7 +38,7 @@
                 @if (book.series) {
                     <div class="line">
                         <div class="line__header">
-                            Серия
+                            {{ 'BOOK_PAGE.LABELS.SERIES' | translate }}
                         </div>
 
                         {{ book.series }} @if (book.seriesNumber) { №{{book.seriesNumber}} }
@@ -48,7 +48,7 @@
                 @if (book.note) {
                     <div class="line">
                         <div class="line__header">
-                            Заметка
+                            {{ 'BOOK_PAGE.LABELS.NOTE' | translate }}
                         </div>
 
                         {{ book.note }}
@@ -58,7 +58,7 @@
                 @if (book.startDate) {
                     <div class="line">
                         <div class="line__header">
-                            Начало чтения
+                            {{ 'BOOK_PAGE.LABELS.START_DATE' | translate }}
                         </div>
 
                         {{ book.startDate | bookDateFormat }}
@@ -68,7 +68,7 @@
                 @if (book.finishDate) {
                     <div class="line">
                         <div class="line__header">
-                            Окончание чтения
+                            {{ 'BOOK_PAGE.LABELS.FINISH_DATE' | translate }}
                         </div>
 
                         {{ book.finishDate | bookDateFormat }}

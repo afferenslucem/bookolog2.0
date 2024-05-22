@@ -1,12 +1,12 @@
-<h1 class="title">{{ header }}</h1>
+<h1 class="title">{{ header | translate }}</h1>
 <div>
-    {{ description }}
+    {{ description | translate }}
 </div>
 <div class="bottom">
     <button tuiButton appearance="flat" size="m" (click)="cancel()">
-        {{ cancelButtonText }}
+        {{ cancelButtonText | translate }}
     </button>
     <button tuiButton appearance="primary" size="m" (click)="confirm()">
-        {{ confirmButtonText }}
+        {{ confirmButtonText | translate }}
     </button>
 </div>

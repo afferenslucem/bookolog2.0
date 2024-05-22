@@ -63,18 +63,8 @@ export const routes: Routes = [
                 },
             },
             {
-                path: '404',
-                loadComponent: () => import('./error/pages/not-found/not-found.component'),
-                data: {
-                    title: {
-                        hidden: true,
-                    } as TitleNode,
-                    searchEnabled: false,
-                },
-            },
-            {
-                path: '403',
-                loadComponent: () => import('./error/pages/forbidden/forbidden.component'),
+                path: 'error/:code',
+                loadComponent: () => import('./error/pages/error-page/error-page.component'),
                 data: {
                     title: {
                         hidden: true,

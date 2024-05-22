@@ -1,25 +1,26 @@
 {
-  "LOGIN": {
-    "HEADER": "Вход",
-    "LABELS": {
-      "ENTER_LOGIN": "Введите логин",
-      "ENTER_PASSWORD": "Введите пароль"
+  "ENUMS": {
+    "BOOK_STATUS": {
+      "TO_READ": "К прочтению",
+      "DONE": "Прочтена",
+      "IN_PROGRESS": "Читаю"
     },
-    "REGISTER_LINK": "Зарегистрироваться",
-    "ERRORS": {
-      "INCORRECT_CREDENTIALS": "Неверные логин или пароль"
-    },
-    "SUBMIT_BUTTON": "Войти"
+    "BOOK_TYPE": {
+      "AUDIO": "Аудиокнига",
+      "PAPER": "Бумажная книга",
+      "ELECTRONIC": "Электронная книга"
+    }
   },
-  "REGISTRATION": {
-    "HEADER": "Регистрация",
-    "LABELS": {
-      "ENTER_LOGIN": "Введите логин",
-      "ENTER_EMAIL": "Введите email",
-      "ENTER_PASSWORD": "Введите пароль",
-      "REPEAT_PASSWORD": "Повторите пароль"
-    },
-    "SUBMIT_BUTTON": "Зарегистрироваться"
+  "CONTROLS": {
+    "ADD": "Добавить",
+    "CANCEL": "Отметить",
+    "CONTINUE": "Продолжить"
+  },
+  "ERRORS": {
+    "REQUIRED": "Обязательное поле",
+    "EMAIL_EXISTS": "Такой email занят",
+    "LOGIN_EXISTS": "Такой логин занят",
+    "PASSWORD_DOES_NOT_MATCH": "Пароли не совпадают"
   },
   "LAYOUT": {
     "SIDEBAR": {
@@ -50,14 +51,27 @@
       "LABEL": "Введите значение"
     }
   },
-  "ERRORS": {
-    "REQUIRED": "Обязательное поле",
-    "EMAIL_EXISTS": "Такой email занят",
-    "LOGIN_EXISTS": "Такой логин занят",
-    "PASSWORD_DOES_NOT_MATCH": "Пароли не совпадают"
+  "LOGIN": {
+    "HEADER": "Вход",
+    "LABELS": {
+      "ENTER_LOGIN": "Введите логин",
+      "ENTER_PASSWORD": "Введите пароль"
+    },
+    "REGISTER_LINK": "Зарегистрироваться",
+    "ERRORS": {
+      "INCORRECT_CREDENTIALS": "Неверные логин или пароль"
+    },
+    "SUBMIT_BUTTON": "Войти"
   },
-  "CONTROLS": {
-    "ADD": "Добавить"
+  "REGISTRATION": {
+    "HEADER": "Регистрация",
+    "LABELS": {
+      "ENTER_LOGIN": "Введите логин",
+      "ENTER_EMAIL": "Введите email",
+      "ENTER_PASSWORD": "Введите пароль",
+      "REPEAT_PASSWORD": "Повторите пароль"
+    },
+    "SUBMIT_BUTTON": "Зарегистрироваться"
   },
   "BOOK_FORM": {
     "LABELS": {
@@ -77,16 +91,30 @@
     },
     "SAVE_BUTTON": "Сохранить"
   },
-  "ENUMS": {
-    "BOOK_STATUS": {
-      "TO_READ": "К прочтению",
-      "DONE": "Прочтена",
-      "IN_PROGRESS": "Читаю"
+  "BOOK_LIST_ITEM": {
+    "NO_AUTHORS": "Нет авторов"
+  },
+  "BOOK_PAGE": {
+    "LABELS": {
+      "STATUS": "Статус",
+      "TYPE": "Тип",
+      "SERIES": "Серия",
+      "NOTE": "Заметка",
+      "START_DATE": "Начало чтения",
+      "FINISH_DATE": "Окончание чтения"
     },
-    "BOOK_TYPE": {
-      "AUDIO": "Аудиокнига",
-      "PAPER": "Бумажная книга",
-      "ELECTRONIC": "Электронная книга"
+    "DELETE_BUTTON": "Удалить"
+  },
+  "BOOK_DELETE_DIALOG": {
+    "HEADER": "Удалить книгу?",
+    "DESCRIPTION": "Отменить это действие будет невозможно"
+  },
+  "ERROR_PAGES": {
+    "403": {
+      "DESCRIPTION": "Не трогай чужое, <br/> хитрый шалунишка"
+    },
+    "404": {
+      "DESCRIPTION": "Кажется, <br/> ты забрел не туда"
     }
   }
 }
