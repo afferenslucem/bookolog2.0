@@ -21,7 +21,7 @@ import { YearStatisticProvider } from './services/providers/statistic-providers/
                 loadComponent: () => import('./pages/statistic-list/statistic-list.component'),
                 data: {
                     title: {
-                        name: 'Жанры',
+                        name: 'LAYOUT.TITLES.GENRES_LIST',
                     } as TitleNode,
                     searchEnabled: true,
                 },
@@ -47,7 +47,7 @@ import { YearStatisticProvider } from './services/providers/statistic-providers/
                 loadComponent: () => import('./pages/statistic-list/statistic-list.component'),
                 data: {
                     title: {
-                        name: 'Теги',
+                        name: 'LAYOUT.TITLES.TAGS_LIST',
                     } as TitleNode,
                     searchEnabled: true,
                 },
@@ -73,7 +73,7 @@ import { YearStatisticProvider } from './services/providers/statistic-providers/
                 loadComponent: () => import('./pages/statistic-list/statistic-list.component'),
                 data: {
                     title: {
-                        name: 'Авторы',
+                        name: 'LAYOUT.TITLES.AUTHORS_LIST',
                     } as TitleNode,
                     searchEnabled: true,
                 },
@@ -99,7 +99,7 @@ import { YearStatisticProvider } from './services/providers/statistic-providers/
                 loadComponent: () => import('./pages/statistic-list/statistic-list.component'),
                 data: {
                     title: {
-                        name: 'Года прочтения',
+                        name: 'LAYOUT.TITLES.YEARS_LIST',
                     } as TitleNode,
                     searchEnabled: false,
                 },
@@ -125,7 +125,7 @@ import { YearStatisticProvider } from './services/providers/statistic-providers/
                 loadComponent: () => import('./pages/statistic-list/statistic-list.component'),
                 data: {
                     title: {
-                        name: 'Серии',
+                        name: 'LAYOUT.TITLES.SERIES_LIST',
                     } as TitleNode,
                     searchEnabled: true,
                 },

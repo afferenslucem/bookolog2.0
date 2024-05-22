@@ -23,7 +23,7 @@ import { ToReadBooksListProvider } from './services/to-read-books-list-provider.
                 loadComponent: () => import('./pages/book-form/book-form.component'),
                 data: {
                     title: {
-                        name: 'Создание книги'
+                        name: 'LAYOUT.TITLES.CREATE_BOOK',
                     } as TitleNode,
                     searchEnabled: false,
                 }
@@ -33,7 +33,7 @@ import { ToReadBooksListProvider } from './services/to-read-books-list-provider.
                 loadComponent: () => import('./pages/book-form/book-form.component'),
                 data: {
                     title: {
-                        name: 'Редактирование книги'
+                        name: 'LAYOUT.TITLES.EDIT_BOOK',
                     } as TitleNode,
                     searchEnabled: false,
                 }
@@ -44,7 +44,7 @@ import { ToReadBooksListProvider } from './services/to-read-books-list-provider.
                 loadComponent: () => import('./pages/book-list/book-list.component'),
                 data: {
                     title: {
-                        name: 'Читаю',
+                        name: 'LAYOUT.TITLES.IN_PROGRESS_LIST',
                     } as TitleNode,
                     searchEnabled: true,
                 },
@@ -61,7 +61,7 @@ import { ToReadBooksListProvider } from './services/to-read-books-list-provider.
                 loadComponent: () => import('./pages/book-list/book-list.component'),
                 data: {
                     title: {
-                        name: 'К прочтению',
+                        name: 'LAYOUT.TITLES.TO_READ_LIST',
                     } as TitleNode,
                     searchEnabled: true,
                 },
@@ -78,7 +78,7 @@ import { ToReadBooksListProvider } from './services/to-read-books-list-provider.
                 loadComponent: () => import('./pages/book-list/book-list.component'),
                 data: {
                     title: {
-                        name: 'Прочитано',
+                        name: 'LAYOUT.TITLES.DONE_LIST',
                     } as TitleNode,
                     searchEnabled: true,
                 },

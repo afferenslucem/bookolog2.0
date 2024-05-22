@@ -34,6 +34,18 @@
       "YEARS_LIST": "Года прочтения",
       "LOGOUT": "Выйти"
     },
+    "TITLES": {
+      "CREATE_BOOK": "Создание книги",
+      "EDIT_BOOK": "Редактирование книги",
+      "IN_PROGRESS_LIST": "Читаю",
+      "TO_READ_LIST": "К прочтению",
+      "DONE_LIST": "Прочитано",
+      "SERIES_LIST": "Серии",
+      "AUTHORS_LIST": "Авторы",
+      "TAGS_LIST": "Теги",
+      "GENRES_LIST": "Жанры",
+      "YEARS_LIST": "Года прочтения"
+    },
     "SEARCH": {
       "LABEL": "Введите значение"
     }
