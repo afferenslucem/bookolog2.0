@@ -1,6 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, Params } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 import { Subject } from 'rxjs';
 
 import LoginPageComponent from './login-page.component';
@@ -20,7 +21,7 @@ describe('LoginPageComponent', () => {
         } as any;
 
         await TestBed.configureTestingModule({
-            imports: [LoginPageComponent, HttpClientModule],
+            imports: [LoginPageComponent, HttpClientModule, TranslateModule.forRoot()],
             providers: [
                 {
                     provide: ActivatedRoute,

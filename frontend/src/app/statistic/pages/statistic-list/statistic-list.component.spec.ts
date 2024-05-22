@@ -21,6 +21,7 @@ describe('StatisticListComponent', () => {
                 {
                     provide: StatisticProvider,
                     useValue: {
+                        loading: jasmine.createSpy().and.returnValue(false),
                         load: jasmine.createSpy().and.returnValue(load$),
                     },
                 },

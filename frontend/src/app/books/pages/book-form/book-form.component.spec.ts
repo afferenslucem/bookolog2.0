@@ -4,6 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { TranslateModule } from '@ngx-translate/core';
 import { TuiDay } from '@taiga-ui/cdk';
 import { of, Subject } from 'rxjs';
 import { BookStatus, BookType } from '../../../domain/book';
@@ -27,7 +28,7 @@ describe('BookFormComponent', () => {
         } as any;
 
         await TestBed.configureTestingModule({
-            imports: [BookFormComponent, HttpClientTestingModule, RouterTestingModule],
+            imports: [BookFormComponent, HttpClientTestingModule, RouterTestingModule, TranslateModule.forRoot()],
             providers: [
                 {
                     provide: ActivatedRoute,
