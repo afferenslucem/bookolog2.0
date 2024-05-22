@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { BookType } from '../../domain/book';
 
 @Pipe({
@@ -6,19 +7,14 @@ import { BookType } from '../../domain/book';
     standalone: true,
 })
 export class BookTypeStringifyPipe implements PipeTransform {
+    public constructor(private translateService: TranslateService) {
+    }
+
 
     transform(status: BookType): unknown {
-        switch (status) {
-            case BookType.AUDIO: {
-                return 'Аудиокнига';
-            }
-            case BookType.PAPER: {
-                return 'Бумажная книга';
-            }
-            case BookType.ELECTRONIC: {
-                return 'Электронная книга';
-            }
-        }
+        const key = Object.entries(BookType).find(pair => pair[1] === status)?.[0];
+
+        return this.translateService.instant(`ENUMS.BOOK_TYPE.${key}`);
     }
 
 }

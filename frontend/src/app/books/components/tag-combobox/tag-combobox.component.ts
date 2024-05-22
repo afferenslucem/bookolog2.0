@@ -1,11 +1,11 @@
 import { NgForOf } from '@angular/common';
 import { Component, Input, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 import { TuiDataListModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
 import { TuiFilterByInputPipeModule, TuiInputModule } from '@taiga-ui/kit';
 import { PrefillService } from '../../../services/prefill.service';
 import { FirstLetterUpPipe } from '../../../shared/pipes/first-letter-up.pipe';
-import { StatisticService } from '../../../statistic/services/statistic.service';
 
 @Component({
     selector: 'tag-combobox',
@@ -18,6 +18,7 @@ import { StatisticService } from '../../../statistic/services/statistic.service'
         TuiFilterByInputPipeModule,
         TuiInputModule,
         FirstLetterUpPipe,
+        TranslateModule,
     ],
     templateUrl: './tag-combobox.component.html',
     styleUrl: './tag-combobox.component.scss',

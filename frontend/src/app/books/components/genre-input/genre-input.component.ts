@@ -1,12 +1,11 @@
 import { NgForOf } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, Input, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 import { TuiDataListModule } from '@taiga-ui/core';
 import { TuiComboBoxModule, TuiDataListWrapperModule, TuiFilterByInputPipeModule, TuiInputModule } from '@taiga-ui/kit';
 import { PrefillService } from '../../../services/prefill.service';
 import { FirstLetterUpPipe } from '../../../shared/pipes/first-letter-up.pipe';
-import { StatisticService } from '../../../statistic/services/statistic.service';
 
 @Component({
     selector: 'genre-input',
@@ -20,6 +19,7 @@ import { StatisticService } from '../../../statistic/services/statistic.service'
         TuiDataListModule,
         TuiInputModule,
         FirstLetterUpPipe,
+        TranslateModule,
     ],
     templateUrl: './genre-input.component.html',
     styleUrl: './genre-input.component.scss',

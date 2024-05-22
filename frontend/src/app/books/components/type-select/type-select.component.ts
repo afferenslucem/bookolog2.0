@@ -1,6 +1,7 @@
 import { NgForOf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 import { TuiDataListModule } from '@taiga-ui/core';
 import { TuiFilterByInputPipeModule, TuiSelectModule } from '@taiga-ui/kit';
 import { BookType } from '../../../domain/book';
@@ -16,6 +17,7 @@ import { BookTypeStringifyPipe } from '../../../shared';
         TuiFilterByInputPipeModule,
         ReactiveFormsModule,
         BookTypeStringifyPipe,
+        TranslateModule,
     ],
     templateUrl: './type-select.component.html',
     styleUrl: './type-select.component.scss',

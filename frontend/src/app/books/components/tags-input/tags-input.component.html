@@ -3,5 +3,6 @@
 </form-row>
 
 <button class="add-button" [style.width]="'100%'" tuiButton size="m" (click)="addControl()" appearance="whiteblock-active">
-    Добавить <tui-svg [src]="tuiIconPlusSquareLarge"></tui-svg>
+    {{ 'CONTROLS.ADD' | translate }}
+    <tui-svg [src]="tuiIconPlusSquareLarge"></tui-svg>
 </button>

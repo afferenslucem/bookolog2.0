@@ -1,10 +1,10 @@
 import { NgForOf, TitleCasePipe } from '@angular/common';
 import { Component, Input, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 import { TuiDataListModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
-import { TuiFilterByInputPipeModule, TuiInputModule } from '@taiga-ui/kit';
+import { TuiFilterByInputPipeModule, TuiInputModule, TuiTextareaModule } from '@taiga-ui/kit';
 import { PrefillService } from '../../../services/prefill.service';
-import { StatisticService } from '../../../statistic/services/statistic.service';
 
 @Component({
     selector: 'author-combobox',
@@ -17,6 +17,8 @@ import { StatisticService } from '../../../statistic/services/statistic.service'
         TuiInputModule,
         TuiFilterByInputPipeModule,
         TitleCasePipe,
+        TranslateModule,
+        TuiTextareaModule,
     ],
     templateUrl: './author-combobox.component.html',
     styleUrl: './author-combobox.component.scss',

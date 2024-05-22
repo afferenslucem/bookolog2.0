@@ -1,5 +1,6 @@
 import { NgForOf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { TuiDestroyService } from '@taiga-ui/cdk';
 import { TuiButtonModule, TuiSvgModule } from '@taiga-ui/core';
 import { tuiIconPlusSquareLarge } from '@taiga-ui/icons';
@@ -16,6 +17,7 @@ import { TagComboboxComponent } from '../tag-combobox/tag-combobox.component';
         TagComboboxComponent,
         TuiButtonModule,
         TuiSvgModule,
+        TranslateModule,
     ],
     templateUrl: './tags-input.component.html',
     styleUrl: './tags-input.component.scss',

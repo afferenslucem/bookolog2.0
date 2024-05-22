@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { AbstractControl, FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 import { TuiDay, TuiDestroyService } from '@taiga-ui/cdk';
 import { TuiAlertService, TuiButtonModule, TuiLoaderModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
 import {
@@ -60,6 +61,7 @@ interface BookForm {
         TuiInputNumberModule,
         TuiToggleModule,
         SeriesInputComponent,
+        TranslateModule,
     ],
     providers: [TuiDestroyService],
     hostDirectives: [PagePadding, ViewContainer],

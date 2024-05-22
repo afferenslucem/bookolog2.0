@@ -55,5 +55,38 @@
     "EMAIL_EXISTS": "Такой email занят",
     "LOGIN_EXISTS": "Такой логин занят",
     "PASSWORD_DOES_NOT_MATCH": "Пароли не совпадают"
+  },
+  "CONTROLS": {
+    "ADD": "Добавить"
+  },
+  "BOOK_FORM": {
+    "LABELS": {
+      "NAME": "Название",
+      "AUTHORS": "Авторы",
+      "NOTE": "Заметка",
+      "TAGS": "Теги",
+      "SERIES": "Серия",
+      "SERIES_NUMBER": "Номер книги",
+      "START_DATE": "Начало чтения",
+      "FINISH_DATE": "Окончание чтения",
+      "ENTER_AUTHOR": "Введите автора",
+      "ENTER_TAG": "Введите тег",
+      "GENRE": "Жанр",
+      "TYPE": "Тип книги",
+      "STATUS": "Статус чтения"
+    },
+    "SAVE_BUTTON": "Сохранить"
+  },
+  "ENUMS": {
+    "BOOK_STATUS": {
+      "TO_READ": "К прочтению",
+      "DONE": "Прочтена",
+      "IN_PROGRESS": "Читаю"
+    },
+    "BOOK_TYPE": {
+      "AUDIO": "Аудиокнига",
+      "PAPER": "Бумажная книга",
+      "ELECTRONIC": "Электронная книга"
+    }
   }
 }

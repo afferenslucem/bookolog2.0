@@ -2,14 +2,14 @@
     <form-layout [formGroup]="form">
         <form-row>
             <tui-input formControlName="name">
-                <span class="required-label">Название</span>
+                <span class="required-label">{{ 'BOOK_FORM.LABELS.NAME' | translate }}</span>
                 <input tuiTextfield/>
             </tui-input>
         </form-row>
 
         <form-section>
             <form-header>
-                Авторы
+                {{ 'BOOK_FORM.LABELS.AUTHORS' | translate }}
             </form-header>
 
             <authors-input [controlArray]="form.controls.authors"/>
@@ -17,7 +17,7 @@
 
         <form-row>
             <tui-textarea formControlName="note" [expandable]="true">
-                Заметка
+                {{ 'BOOK_FORM.LABELS.NOTE' | translate }}
             </tui-textarea>
         </form-row>
 
@@ -27,7 +27,7 @@
 
         <form-section>
             <form-header>
-                Теги
+                {{ 'BOOK_FORM.LABELS.TAGS' | translate }}
             </form-header>
             <tags-input [controlArray]="form.controls.tags"/>
         </form-section>
@@ -35,7 +35,7 @@
         <form-section class="series-section" [class.series-section--closed]="!seriesEnabledValue">
             <form-header>
                 <span>
-                    Серия
+                {{ 'BOOK_FORM.LABELS.SERIES' | translate }}
                 </span>
 
                 <tui-toggle formControlName="seriesEnabled" [showIcons]="true" size="l"></tui-toggle>
@@ -49,7 +49,7 @@
 
                     <form-row>
                         <tui-input-number formControlName="seriesNumber">
-                            Номер книги
+                            {{ 'BOOK_FORM.LABELS.SERIES_NUMBER' | translate }}
                             <input tuiTextfield/>
                         </tui-input-number>
                     </form-row>
@@ -68,7 +68,7 @@
         @if (statusValue === BookStatus.IN_PROGRESS || statusValue === BookStatus.DONE) {
             <form-row data-testid="start-date-row">
                 <tui-input-date formControlName="startDate">
-                    Начало чтения
+                    {{ 'BOOK_FORM.LABELS.START_DATE' | translate }}
                 </tui-input-date>
             </form-row>
         }
@@ -76,7 +76,7 @@
         @if (statusValue === BookStatus.DONE) {
             <form-row data-testid="end-date-row">
                 <tui-input-date formControlName="finishDate">
-                    Окончание чтения
+                    {{ 'BOOK_FORM.LABELS.FINISH_DATE' | translate }}
                 </tui-input-date>
             </form-row>
         }
@@ -88,7 +88,7 @@
                 (click)="save()"
                 [disabled]="form.invalid || disabledButton()"
         >
-            Сохранить
+            {{ 'BOOK_FORM.SAVE_BUTTON' | translate }}
         </button>
     </form-layout>
 </tui-loader>
