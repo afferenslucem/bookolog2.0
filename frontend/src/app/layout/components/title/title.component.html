@@ -18,7 +18,7 @@
         <tui-input [formControl]="searchControl" [tuiTextfieldSize]="'m'" class="search-input"
                    [tuiTextfieldLabelOutside]="true"
                    [class.search-input--opened]="searchOpened() || searchHasContent">
-            Введите значение
+            {{ 'LAYOUT.SEARCH.LABEL' | translate }}
 
             <input tuiTextfield (blur)="closeSearch()"/>
         </tui-input>

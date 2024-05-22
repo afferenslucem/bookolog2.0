@@ -12,41 +12,41 @@ export class SidebarComponent {
     public groupedLinks = [
         [
             {
-                title: 'Добавить',
+                title: 'LAYOUT.SIDEBAR.ADD_BOOK',
                 url: '/books/create',
             },
             {
-                title: 'Читаю',
+                title: 'LAYOUT.SIDEBAR.IN_PROGRESS_LIST',
                 url: '/books/in-progress',
             },
             {
-                title: 'К прочтению',
+                title: 'LAYOUT.SIDEBAR.TO_READ_LIST',
                 url: '/books/to-read',
             },
             {
-                title: 'Прочитано',
+                title: 'LAYOUT.SIDEBAR.DONE_LIST',
                 url: '/books/done',
             },
         ],
         [
             {
-                title: 'Серии',
+                title: 'LAYOUT.SIDEBAR.SERIES_LIST',
                 url: '/statistic/series',
             },
             {
-                title: 'Авторы',
+                title: 'LAYOUT.SIDEBAR.AUTHORS_LIST',
                 url: '/statistic/authors',
             },
             {
-                title: 'Теги',
+                title: 'LAYOUT.SIDEBAR.TAGS_LIST',
                 url: '/statistic/tags',
             },
             {
-                title: 'Жанры',
+                title: 'LAYOUT.SIDEBAR.GENRES_LIST',
                 url: '/statistic/genres',
             },
             {
-                title: 'Года прочтения',
+                title: 'LAYOUT.SIDEBAR.YEARS_LIST',
                 url: '/statistic/years',
             },
         ],

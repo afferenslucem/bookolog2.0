@@ -42,7 +42,8 @@
             {{ 'LOGIN.REGISTER_LINK' | translate }}
         </a>
 
-        <button tuiButton size="m" data-testid="login-button" [disabled]="form.invalid" (click)="submit()"> Войти
+        <button tuiButton size="m" data-testid="login-button" [disabled]="form.invalid" (click)="submit()">
+            {{ 'LOGIN.SUBMIT_BUTTON' | translate }}
         </button>
     </form>
 </form-layout>

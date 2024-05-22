@@ -10,9 +10,10 @@ import {
     Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 import { TuiButtonModule, TuiErrorModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
 import { TuiFieldErrorPipeModule, TuiInputModule, TuiInputPasswordModule } from '@taiga-ui/kit';
-import { first, map, Observable, take, tap } from 'rxjs';
+import { map, Observable, take } from 'rxjs';
 import { RegistrationData } from '../../../domain/registration-data';
 import { AuthService } from '../../../services/auth.service';
 import { FormHelper, PagePadding, ViewContainer } from '../../../shared';
@@ -39,6 +40,7 @@ interface RegistrationForm {
         TuiInputPasswordModule,
         FormLayoutModule,
         TuiButtonModule,
+        TranslateModule,
     ],
     templateUrl: './registration.component.html',
     styleUrl: './registration.component.scss',

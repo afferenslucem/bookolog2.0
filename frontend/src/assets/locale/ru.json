@@ -8,6 +8,40 @@
     "REGISTER_LINK": "Зарегистрироваться",
     "ERRORS": {
       "INCORRECT_CREDENTIALS": "Неверные логин или пароль"
+    },
+    "SUBMIT_BUTTON": "Войти"
+  },
+  "REGISTRATION": {
+    "HEADER": "Регистрация",
+    "LABELS": {
+      "ENTER_LOGIN": "Введите логин",
+      "ENTER_EMAIL": "Введите email",
+      "ENTER_PASSWORD": "Введите пароль",
+      "REPEAT_PASSWORD": "Повторите пароль"
+    },
+    "SUBMIT_BUTTON": "Зарегистрироваться"
+  },
+  "LAYOUT": {
+    "SIDEBAR": {
+      "ADD_BOOK": "Добавить",
+      "IN_PROGRESS_LIST": "Читаю",
+      "TO_READ_LIST": "К прочтению",
+      "DONE_LIST": "Прочитано",
+      "SERIES_LIST": "Серии",
+      "AUTHORS_LIST": "Авторы",
+      "TAGS_LIST": "Теги",
+      "GENRES_LIST": "Жанры",
+      "YEARS_LIST": "Года прочтения",
+      "LOGOUT": "Выйти"
+    },
+    "SEARCH": {
+      "LABEL": "Введите значение"
     }
+  },
+  "ERRORS": {
+    "REQUIRED": "Обязательное поле",
+    "EMAIL_EXISTS": "Такой email занят",
+    "LOGIN_EXISTS": "Такой логин занят",
+    "PASSWORD_DOES_NOT_MATCH": "Пароли не совпадают"
   }
 }

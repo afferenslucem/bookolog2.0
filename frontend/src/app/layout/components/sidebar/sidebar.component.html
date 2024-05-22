@@ -3,12 +3,12 @@
         <div class="group">
             @for (item of group; track item.url) {
                 <a tuiButton size="m" appearance="flat" [routerLink]="item.url"
-                   (click)="routeChanges.emit()"> {{ item.title }} </a>
+                   (click)="routeChanges.emit()"> {{ item.title | translate }} </a>
             }
         </div>
     }
     <div class="group">
         <a tuiButton size="m" appearance="accent" [routerLink]="'/logout'"
-           (click)="routeChanges.emit()"> Выход </a>
+           (click)="routeChanges.emit()"> {{ 'LAYOUT.SIDEBAR.LOGOUT' | translate }} </a>
     </div>
 </div>
