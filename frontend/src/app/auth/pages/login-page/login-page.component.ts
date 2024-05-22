@@ -3,6 +3,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 import { TuiButtonModule, TuiErrorModule, TuiLinkModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
 import { TuiFieldErrorPipeModule, TuiInputModule, TuiInputPasswordModule } from '@taiga-ui/kit';
 import { AuthService } from '../../../services/auth.service';
@@ -29,6 +30,7 @@ interface LoginForm {
         FormLayoutModule,
         TuiLinkModule,
         RouterLink,
+        TranslateModule,
     ],
     templateUrl: './login-page.component.html',
     styleUrl: './login-page.component.scss',

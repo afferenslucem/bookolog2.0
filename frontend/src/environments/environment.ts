@@ -1,3 +1,5 @@
 export const environment = {
-    apiPrefix: '/api'
+    apiPrefix: '/api',
+    locales: ['ru'],
+    defaultLocale: 'ru',
 };

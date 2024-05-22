@@ -1,6 +1,6 @@
 <form-layout>
     <h1>
-        Вход
+        {{ 'LOGIN.HEADER' | translate }}
     </h1>
 
     <form [formGroup]="form">
@@ -12,7 +12,7 @@
                     tuiTextfieldSize="m"
                     [tuiTextfieldCleaner]="true"
             >
-                Введите логин
+                {{ 'LOGIN.LABELS.ENTER_LOGIN' | translate }}
                 <input
                         tuiTextfield
                 />
@@ -27,7 +27,7 @@
                     tuiTextfieldSize="m"
                     [tuiTextfieldLabelOutside]="true"
             >
-                Введите пароль
+                {{ 'LOGIN.LABELS.ENTER_PASSWORD' | translate }}
                 <input tuiTextfield/>
             </tui-input-password>
 
@@ -35,11 +35,11 @@
         </form-row>
 
         @if (unauthorized()) {
-            <tui-error [error]="'Неверные логин или пароль'"></tui-error>
+            <tui-error [error]="'LOGIN.ERRORS.INCORRECT_CREDENTIALS' | translate"></tui-error>
         }
 
         <a routerLink="/registration" tuiLink class="registration-link">
-            Зарегистрироваться
+            {{ 'LOGIN.REGISTER_LINK' | translate }}
         </a>
 
         <button tuiButton size="m" data-testid="login-button" [disabled]="form.invalid" (click)="submit()"> Войти

@@ -1,0 +1,13 @@
+{
+  "LOGIN": {
+    "HEADER": "Вход",
+    "LABELS": {
+      "ENTER_LOGIN": "Введите логин",
+      "ENTER_PASSWORD": "Введите пароль"
+    },
+    "REGISTER_LINK": "Зарегистрироваться",
+    "ERRORS": {
+      "INCORRECT_CREDENTIALS": "Неверные логин или пароль"
+    }
+  }
+}
