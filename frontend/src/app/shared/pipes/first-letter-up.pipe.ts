@@ -1,5 +1,4 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { BookStatus } from '../../domain/book';
 
 @Pipe({
     name: 'firstLetterUp',

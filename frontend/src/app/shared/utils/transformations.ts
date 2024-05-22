@@ -1,6 +1,6 @@
 import { TuiDay } from '@taiga-ui/cdk';
 import { TransformFnParams } from 'class-transformer';
-import { Book, ReadDate } from '../../domain/book';
+import { ReadDate } from '../../domain/book';
 
 export function defaultValue<T>($default: T | nil): any {
     return (param: TransformFnParams) => param.value ?? $default;

@@ -1,11 +1,13 @@
 import { Transform } from 'class-transformer';
 import {
-    defaultValue, excludeEmptyString,
+    defaultValue,
+    excludeEmptyString,
     excludeNull,
     filterEmptyItems,
     titleCase,
     toNativeDate,
-    toReadDate, wordTitleCase,
+    toReadDate,
+    wordTitleCase,
 } from '../shared/utils/transformations';
 
 export enum BookStatus {

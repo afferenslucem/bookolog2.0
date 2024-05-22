@@ -1,9 +1,7 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { map } from 'rxjs';
 import { AuthService } from '../../../services/auth.service';
 import { PagePadding, ViewContainer } from '../../../shared';
-import { UserService } from '../../services/user.service';
 
 @Component({
     selector: 'logout-page',

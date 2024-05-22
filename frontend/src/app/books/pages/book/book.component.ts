@@ -6,6 +6,7 @@ import { tuiIconDraft } from '@taiga-ui/icons';
 import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
 import { filter, map, Observable, switchMap, takeUntil } from 'rxjs';
 import { Book, BookStatus } from '../../../domain/book';
+import { BookService } from '../../../services/book.service';
 import {
     BookDateFormatPipe,
     BookStatusStringifyPipe,
@@ -17,7 +18,6 @@ import {
     ConfirmationDialogComponent,
     ConfirmationDialogContext,
 } from '../../../shared/components/confirmation-dialog/confirmation-dialog.component';
-import { BookService } from '../../../services/book.service';
 
 @Component({
     selector: 'app-book',

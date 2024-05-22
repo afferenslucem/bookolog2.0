@@ -1,10 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { classToPlain, instanceToPlain, plainToInstance } from 'class-transformer';
-import { map, Observable } from 'rxjs';
-import { Book, BookStatus } from '../domain/book';
-import { BookSearchOptions } from '../domain/book-search-options';
-import { StatisticItem } from '../statistic';
+import { Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root',
