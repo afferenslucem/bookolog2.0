@@ -45,7 +45,7 @@ public class BookService : IBookService
 
     public async Task<Book?> GetById(long id)
     {
-        var book = await dbContext.Books.FirstOrDefaultAsync(book => book.Id == id);
+        var book = await dbContext.Books.AsNoTracking().FirstOrDefaultAsync(book => book.Id == id);
 
         return book;
     }
